@@ -24,7 +24,6 @@ function MainView() {
       setVideoList([...myVideosList, videoId])
     })
   }
-  console.log(localStorage)
 
   return (
     <Container>
