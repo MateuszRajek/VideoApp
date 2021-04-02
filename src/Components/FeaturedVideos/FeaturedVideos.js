@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Carousel, CarouselItem, CarouselIndicators, CarouselCaption } from 'reactstrap';
+import { Carousel, CarouselItem, CarouselIndicators } from 'reactstrap';
 import './FeaturedVideos.css';
 
 const items = [
@@ -48,9 +48,7 @@ function FeaturedVideos({ src }) {
         onExited={() => setAnimating(false)}
         key={item.src}
       >
-        <iframe width="560" height="315" src={item.src} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        {/* <img src={item.src} alt={item.altText} /> */}
-        <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+        <iframe width="560" height="315" src={item.src} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
       </CarouselItem>
     );
   });

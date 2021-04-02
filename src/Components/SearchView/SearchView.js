@@ -3,13 +3,15 @@ import { InputGroup, InputGroupAddon, Input } from 'reactstrap';
 import Btn from '../Button/Button';
 import './SearchView.css';
 
-function SearchView() {
+function SearchView({ onChange, onClick }) {
+
+
 
   return (
     <InputGroup>
-        <Input placeholder="Video URL" />
+        <Input placeholder="Video URL" onChange={onChange}/>
         <InputGroupAddon addonType="append">
-          <Btn outlineColor='info' text='Search for video'/>
+          <Btn outlineColor='info' text='Search for video' onClick={onClick}/>
         </InputGroupAddon>
       </InputGroup>
   );
