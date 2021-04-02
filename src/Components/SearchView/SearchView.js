@@ -5,8 +5,6 @@ import './SearchView.css';
 
 function SearchView({ onChange, onClick }) {
 
-
-
   return (
     <InputGroup>
         <Input placeholder="Video URL" onChange={onChange}/>

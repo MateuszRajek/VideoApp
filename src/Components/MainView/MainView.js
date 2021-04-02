@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Container } from 'reactstrap';
 import SearchView from '../SearchView/SearchView';
 import FeaturedVideos from '../FeaturedVideos/FeaturedVideos';
-import { fetchYoutubeRequest } from '../../requests.js';
+import { getVideoInfo } from '../../requests.js';
 import VideosList from '../VideosList/VideosList';
 import './MainView.css';
 
@@ -19,11 +19,13 @@ function MainView() {
   }
   
   const getAndRenderMyVideos = async () => {
-    await fetchYoutubeRequest(inputValue).then(resp => {
-      const videoId = resp.data.items[0].id.videoId
-      setVideoList([...myVideosList, videoId])
+    await getVideoInfo(inputValue).then(resp => {
+      const { items } = resp.data
+      const video = items[0]
+      setVideoList([...myVideosList, video])
     })
   }
+
 
   return (
     <Container>
@@ -34,7 +36,7 @@ function MainView() {
        <FeaturedVideos src="https://via.placeholder.com/150x200"/>
       </section>
       <section className="user-videos">
-      <VideosList videoList={myVideosList} />
+      <VideosList id={myVideosList} />
       </section>
      </Container>
   
