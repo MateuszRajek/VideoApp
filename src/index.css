@@ -6,3 +6,7 @@ body {
 code {
   font-family: 'Roboto', sans-serif;
 }
+
+section {
+  margin: 30px 0;
+}
