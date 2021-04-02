@@ -26,7 +26,6 @@ function MainView() {
     })
   }
 
-
   return (
     <Container>
       <section className="search__bar">
@@ -36,7 +35,7 @@ function MainView() {
        <FeaturedVideos src="https://via.placeholder.com/150x200"/>
       </section>
       <section className="user-videos">
-      <VideosList id={myVideosList} />
+      <VideosList videoList={myVideosList} />
       </section>
      </Container>
   

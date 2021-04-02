@@ -6,7 +6,6 @@ import './VideosList.css';
 function VideosList({ videoList }) {
   const videos = videoList
 
-
   return (
     <>
     <h2>My Videos</h2>
@@ -14,14 +13,17 @@ function VideosList({ videoList }) {
       {videos.map(video => {
         const { statistics } = video
         const { snippet } = video
+
         return (
           <Col>
-            <VideoCard videoId={video.id} likes={statistics.likeCount} title={snippet.title} key={video} />
+            <VideoCard videoId={video.id} likes={statistics.likeCount} title={snippet.title} key={video.id} />
           </Col>
         )
       })}
     </Row>
-    </>  
+    </>
+    
+  
   );
 }
 
