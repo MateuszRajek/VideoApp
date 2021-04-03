@@ -9,7 +9,7 @@ function SearchView({ onChange, onClick }) {
     <InputGroup>
         <Input placeholder="Video URL" onChange={onChange}/>
         <InputGroupAddon addonType="append">
-          <Btn outlineColor='info' text='Search for video' onClick={onClick}/>
+          <Btn outlineColor='info' text='Add a video' onClick={onClick}/>
         </InputGroupAddon>
       </InputGroup>
   );

@@ -11,12 +11,20 @@ function VideosList({ videoList }) {
     <h2>My Videos</h2>
       <Row>
       {videos.map(video => {
-        const { statistics } = video
-        const { snippet } = video
-
+        const { statistics, snippet } = video
+        const { title, publishedAt, thumbnails } = snippet
+        const { likeCount, dislikeCount, viewCount } = statistics
         return (
           <Col>
-            <VideoCard videoId={video.id} likes={statistics.likeCount} title={snippet.title} key={video.id} />
+            <VideoCard videoId={video.id}
+             likes={likeCount} 
+             dislikes={dislikeCount} 
+             title={title} 
+             views={viewCount}
+             publishedDate={publishedAt}
+             image={thumbnails.medium}
+             key={video.id} 
+             />
           </Col>
         )
       })}

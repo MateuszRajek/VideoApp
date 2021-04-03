@@ -32,7 +32,7 @@ function MainView() {
         <SearchView onChange={onInputChange} onClick={onButtonSubmit}/>
       </section>
       <section className="featured-videos">
-       <FeaturedVideos src="https://via.placeholder.com/150x200"/>
+       <FeaturedVideos />
       </section>
       <section className="user-videos">
       <VideosList videoList={myVideosList} />
