@@ -7,29 +7,40 @@ import VideosList from '../VideosList/VideosList';
 import './MainView.css';
 
 function MainView() {
-  const [inputValue, setInputValue] = useState('')
-  const [myVideosList, setVideoList] = useState([])
+  const [inputValue, setInputValue] = useState('');
+  const [myVideosList, setVideoList] = useState([]);
+  const [videoSource, setVideoSource] = useState('Choose video source');
   
-  const onButtonSubmit = () => {
-    getAndRenderMyVideos()
+  const onButtonSubmit = event => {
+    event.preventDefault();
+    getAndRenderMyVideos();
   }
   
   const onInputChange = event => {
-  setInputValue(event.target.value)
+  setInputValue(event.target.value);
+  }
+
+  const chooseVideoSource = event => {
+    setVideoSource(event.target.innerText);
   }
   
   const getAndRenderMyVideos = async () => {
     await getVideoInfo(inputValue).then(resp => {
-      const { items } = resp.data
-      const video = items[0]
-      setVideoList([...myVideosList, video])
+      const { items } = resp.data;
+      const video = items[0];
+      setVideoList([...myVideosList, video]);
     })
   }
 
   return (
     <Container>
       <section className="search__bar">
-        <SearchView onChange={onInputChange} onClick={onButtonSubmit}/>
+        <SearchView 
+        onChange={onInputChange} 
+        onSubmit={onButtonSubmit} 
+        onClick={chooseVideoSource} 
+        source={videoSource} 
+        />
       </section>
       <section className="featured-videos">
        <FeaturedVideos />
