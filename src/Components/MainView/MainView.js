@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Container } from 'reactstrap';
 import SearchView from '../SearchView/SearchView';
 import FeaturedVideos from '../FeaturedVideos/FeaturedVideos';
-import { getVideoInfo } from '../../requests.js';
+import { getYouTubeVideoInfo, getVimeoVideoInfo } from '../../requests.js';
 import VideosList from '../VideosList/VideosList';
 import './MainView.css';
 
@@ -23,13 +23,31 @@ function MainView() {
   const chooseVideoSource = event => {
     setVideoSource(event.target.innerText);
   }
+
+  console.log(videoSource)
   
   const getAndRenderMyVideos = async () => {
-    await getVideoInfo(inputValue).then(resp => {
-      const { items } = resp.data;
-      const video = items[0];
-      setVideoList([...myVideosList, video]);
-    })
+
+    switch(videoSource) {
+      case 'YouTube':
+        await getYouTubeVideoInfo(inputValue).then(resp => {
+          const { items } = resp.data;
+          const video = items[0];
+          setVideoList([...myVideosList, video]);
+          console.log('youtube', video)
+        });
+        break;
+      case 'Vimeo':
+        // const videoId = videoSource.split('/').slice(-1)[0].split('?')[0]
+        // console.log(videoId)
+        await getVimeoVideoInfo(inputValue).then(resp => {
+        // //   // const { items } = resp.data;
+        // //   // setVideoList([...myVideosList, video]);
+          console.log('vimeo', resp)
+        });
+        break;
+        default :
+    }   
   }
 
   return (
