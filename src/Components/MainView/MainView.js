@@ -43,7 +43,6 @@ function MainView() {
           const { title, publishedAt, thumbnails } = videoData.snippet
           const { likeCount, viewCount } = videoData.statistics
           const id = videoData.id
-          console.log(resp)
           video = { ...video, title: title, image: thumbnails.medium.url, releaseDate: publishedAt, likes: likeCount, views: viewCount, id: id }
           setVideoList([...videosList, video]);
         });
@@ -51,7 +50,7 @@ function MainView() {
       case 'Vimeo':
         await getVimeoVideoInfo(inputValue).then(resp => {
           const { title, upload_date, thumbnail_url, video_id } = resp.data;
-          video = { ...video, title: title, image: thumbnail_url, releaseDate: upload_date.split(' ')[0], id: video_id}
+          video = { ...video, title: title, image: thumbnail_url, releaseDate: upload_date.split(' ')[0], id: video_id }
           getVimeoDetailedInfo(video_id).then(resp => {
             const likes = resp.data.data[0].metadata.connections.likes.total
             video = { ...video, likes: likes }
