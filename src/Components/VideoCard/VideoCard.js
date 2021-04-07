@@ -1,17 +1,18 @@
 import React from 'react';
 import { Card, CardText, CardBody,CardTitle, CardSubtitle } from 'reactstrap';
-import Button from '../Button/Button';
 import './VideoCard.css';
 
-function VideoCard({ videoId }) {
+function VideoCard({ likes, title, views, publishedDate, image }) {
+  
   return (
-    <div>
+    <div className="card__wrapper">
       <Card>
-      <iframe width="480" height="270" src={`https://www.youtube.com/embed/${videoId}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>        <CardBody>
-          <CardTitle tag="h5">Card title</CardTitle>
-          <CardSubtitle tag="h6" className="mb-2 text-muted">Card subtitle</CardSubtitle>
-          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-          <Button>Button</Button>
+       <img className="card__image" src={image} alt="video thumbnail" />
+        <CardBody>
+          <CardTitle tag="h5">{`Title: ${title}`}</CardTitle>
+          <CardSubtitle tag="h6" className="mb-2 text-muted">{`Published at: ${publishedDate.split('T')[0]}`}</CardSubtitle>
+          <CardText> {`Likes: ${likes}`}</CardText>
+          <CardText> {`Views: ${views}`}</CardText>
         </CardBody>
       </Card>
     </div>

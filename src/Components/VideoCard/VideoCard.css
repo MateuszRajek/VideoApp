@@ -1,0 +1,15 @@
+.card__image {
+  height: 250px;
+}
+
+.card__column.col {
+  height: auto;
+}
+
+.card__wrapper {
+  height: 100%;
+}
+
+.card {
+  height: 100%;
+}
