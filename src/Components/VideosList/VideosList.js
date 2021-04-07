@@ -11,19 +11,16 @@ function VideosList({ videoList }) {
     <h2>My Videos</h2>
       <Row>
       {videos.map(video => {
-        const { statistics, snippet } = video
-        const { title, publishedAt, thumbnails } = snippet
-        const { likeCount, dislikeCount, viewCount } = statistics
+       const { image, likes, releaseDate, title, views, id} = video
         return (
-          <Col>
-            <VideoCard videoId={video.id}
-             likes={likeCount} 
-             dislikes={dislikeCount} 
+          <Col className="card__column">
+            <VideoCard videoId={id}
+             likes={likes}  
              title={title} 
-             views={viewCount}
-             publishedDate={publishedAt}
-             image={thumbnails.medium}
-             key={video.id} 
+             views={views? views : 'Data not found'}
+             publishedDate={releaseDate}
+             image={image}
+             key={id} 
              />
           </Col>
         )

@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { Container } from 'reactstrap';
 import SearchView from '../SearchView/SearchView';
 import FeaturedVideos from '../FeaturedVideos/FeaturedVideos';
-import { getYouTubeVideoInfo, getVimeoVideoInfo } from '../../requests.js';
+import { getYouTubeVideoInfo, getVimeoVideoInfo, getVimeoDetailedInfo } from '../../requests.js';
 import VideosList from '../VideosList/VideosList';
 import './MainView.css';
 
 function MainView() {
   const [inputValue, setInputValue] = useState('');
-  const [myVideosList, setVideoList] = useState([]);
+  const [videosList, setVideoList] = useState([]);
   const [videoSource, setVideoSource] = useState('Choose video source');
   
   const onButtonSubmit = event => {
@@ -23,28 +23,41 @@ function MainView() {
   const chooseVideoSource = event => {
     setVideoSource(event.target.innerText);
   }
-
-  console.log(videoSource)
   
   const getAndRenderMyVideos = async () => {
+
+    let video = {
+      title: '',
+      image: '',
+      releaseDate: '',
+      likes: '',
+      views: '',
+      id: ''
+    }
 
     switch(videoSource) {
       case 'YouTube':
         await getYouTubeVideoInfo(inputValue).then(resp => {
           const { items } = resp.data;
-          const video = items[0];
-          setVideoList([...myVideosList, video]);
-          console.log('youtube', video)
+          const videoData = items[0];
+          const { title, publishedAt, thumbnails } = videoData.snippet
+          const { likeCount, viewCount } = videoData.statistics
+          const id = videoData.id
+          console.log(resp)
+          video = { ...video, title: title, image: thumbnails.medium.url, releaseDate: publishedAt, likes: likeCount, views: viewCount, id: id }
+          setVideoList([...videosList, video]);
         });
         break;
       case 'Vimeo':
-        // const videoId = videoSource.split('/').slice(-1)[0].split('?')[0]
-        // console.log(videoId)
         await getVimeoVideoInfo(inputValue).then(resp => {
-        // //   // const { items } = resp.data;
-        // //   // setVideoList([...myVideosList, video]);
-          console.log('vimeo', resp)
-        });
+          const { title, upload_date, thumbnail_url, video_id } = resp.data;
+          video = { ...video, title: title, image: thumbnail_url, releaseDate: upload_date.split(' ')[0], id: video_id}
+          getVimeoDetailedInfo(video_id).then(resp => {
+            const likes = resp.data.data[0].metadata.connections.likes.total
+            video = { ...video, likes: likes }
+            setVideoList([...videosList, video]);
+          })  
+        })
         break;
         default :
     }   
@@ -64,10 +77,9 @@ function MainView() {
        <FeaturedVideos />
       </section>
       <section className="user-videos">
-      <VideosList videoList={myVideosList} />
+      <VideosList videoList={videosList} videoSource={videoSource} />
       </section>
      </Container>
-  
   );
 }
 
