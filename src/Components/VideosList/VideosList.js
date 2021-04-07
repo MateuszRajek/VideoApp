@@ -14,7 +14,8 @@ function VideosList({ videoList }) {
        const { image, likes, releaseDate, title, views, id} = video
         return (
           <Col className="card__column">
-            <VideoCard videoId={id}
+            <VideoCard 
+             videoId={id}
              likes={likes}  
              title={title} 
              views={views? views : 'Data not found'}

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const APIKeyYouTube = 'AIzaSyC1XsTp5oyzcKrycQx1fZidIRDvu8vn3Ys';
-const APIkeyVimeo = '858c0019c6f70ddaf1471cb24cecc28d';
+const APIKeyYouTube = '';
+const APIKeyVimeo = '';
 
 
 export const getYouTubeVideoInfo = video => {;
@@ -17,6 +17,6 @@ export const getVimeoVideoInfo = video => {
 }
 
 export const getVimeoDetailedInfo = id => {
-  return axios.get(`https://api.vimeo.com/videos?uris=/videos/${id}&fields=metadata&access_token=${APIkeyVimeo}`);
+  return axios.get(`https://api.vimeo.com/videos?uris=/videos/${id}&fields=metadata&access_token=${APIKeyVimeo}`);
 }
 

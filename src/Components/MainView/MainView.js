@@ -14,6 +14,7 @@ function MainView() {
   const onButtonSubmit = event => {
     event.preventDefault();
     getAndRenderMyVideos();
+    reRenderVideoList()
   }
   
   const onInputChange = event => {
@@ -22,6 +23,32 @@ function MainView() {
 
   const chooseVideoSource = event => {
     setVideoSource(event.target.innerText);
+  }
+
+  const addVideoToLocalStorage = (id, video) => {
+    localStorage.setItem(`video-id: ${id}`, JSON.stringify(video))
+  }
+
+  const getItemsFromLocalStorage = () => {
+    for (let item in localStorage) {
+      if(localStorage.hasOwnProperty(item) && item.startsWith('video-id')) {
+        const itemsFromLocalStorage = localStorage.getItem(item)
+        let movie = JSON.parse(itemsFromLocalStorage)
+        console.log(movie)
+        // setVideoList([...videosList, movie]);
+        // console.log('stan-listy-wewnatrz', videosList)
+      }
+    }
+    console.log('stan-listy', videosList)
+    // console.log('localstorage', localStorage)
+    // setVideoList([...videosList, movie]);
+  }
+  
+
+  const reRenderVideoList = () => {
+    getAndRenderMyVideos()
+    getItemsFromLocalStorage()
+    
   }
   
   const getAndRenderMyVideos = async () => {
@@ -44,7 +71,7 @@ function MainView() {
           const { likeCount, viewCount } = videoData.statistics
           const id = videoData.id
           video = { ...video, title: title, image: thumbnails.medium.url, releaseDate: publishedAt, likes: likeCount, views: viewCount, id: id }
-          setVideoList([...videosList, video]);
+          // setVideoList([...videosList, video]);
         });
         break;
       case 'Vimeo':
@@ -54,12 +81,15 @@ function MainView() {
           getVimeoDetailedInfo(video_id).then(resp => {
             const likes = resp.data.data[0].metadata.connections.likes.total
             video = { ...video, likes: likes }
-            setVideoList([...videosList, video]);
+            // setVideoList([...videosList, video]);
+            addVideoToLocalStorage(video.id, video)
           })  
         })
         break;
         default :
     }   
+
+
   }
 
   return (
@@ -75,9 +105,9 @@ function MainView() {
       <section className="featured-videos">
        <FeaturedVideos />
       </section>
-      <section className="user-videos">
+      {/* <section className="user-videos">
       <VideosList videoList={videosList} videoSource={videoSource} />
-      </section>
+      </section> */}
      </Container>
   );
 }
