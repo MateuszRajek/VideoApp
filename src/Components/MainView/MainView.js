@@ -38,7 +38,16 @@ function MainView() {
       }  
     }
     setVideoList(video)
-  }  
+  } 
+
+  const removeItemFromLocalStorage = id => {
+    localStorage.removeItem(`video-id: ${id}`)
+  }
+
+  const deleteVideo = id => {
+    removeItemFromLocalStorage(id)
+    reRenderVideoList()
+  }
 
   const reRenderVideoList = () => {
     getItemsFromLocalStorage()
@@ -101,7 +110,7 @@ function MainView() {
        <FeaturedVideos />
       </section>
       <section className="user-videos">
-      <VideosList videoList={videosList} videoSource={videoSource} />
+      <VideosList videoList={videosList} videoSource={videoSource} onClick={deleteVideo}/>
       </section>
      </Container>
   );

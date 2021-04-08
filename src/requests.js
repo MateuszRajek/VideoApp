@@ -4,7 +4,7 @@ const APIKeyYouTube = '';
 const APIKeyVimeo = '';
 
 
-export const getYouTubeVideoInfo = video => {;
+export const getYouTubeVideoInfo = video => {
   return axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${video}&key=${APIKeyYouTube}`)
   .then(resp => {
     const videoId = resp.data.items[0].id.videoId

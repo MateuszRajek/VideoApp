@@ -3,7 +3,7 @@ import { Card, CardText, CardBody,CardTitle, CardSubtitle } from 'reactstrap';
 import Btn from '../Button/Button';
 import './VideoCard.css';
 
-function VideoCard({ likes, title, views, publishedDate, image }) {
+function VideoCard({ likes, title, views, publishedDate, image, videoId, onClick }) {
   
   return (
     <div className="card__wrapper">
@@ -15,9 +15,9 @@ function VideoCard({ likes, title, views, publishedDate, image }) {
           <CardText> {`Likes: ${likes}`}</CardText>
           <CardText> {`Views: ${views}`}</CardText>
           <div className='card__buttons'>
-          <Btn text={'Watch a video'} />
-          <Btn color={'success'} text={'Add to favourite'} />
-          <Btn color={'danger'} text={'Remove'} />
+            <Btn text={'Watch a video'} />
+            <Btn color={'success'} text={'Add to favourite'} />
+            <Btn color={'danger'} text={'Remove'} onClick={() => onClick(videoId)} />
           </div>  
         </CardBody>
       </Card>
