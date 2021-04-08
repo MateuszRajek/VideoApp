@@ -21,7 +21,7 @@ function VideosList({ videoList }) {
              views={views? views : 'Data not found'}
              publishedDate={releaseDate}
              image={image}
-             key={id} 
+             key={id}
              />
           </Col>
         )
