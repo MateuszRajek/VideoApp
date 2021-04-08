@@ -56,6 +56,7 @@ function MainView() {
   const getAndRenderMyVideos = async () => {
 
     let video = {
+      source: '',
       title: '',
       image: '',
       releaseDate: '',
@@ -72,14 +73,14 @@ function MainView() {
           const { title, publishedAt, thumbnails } = videoData.snippet
           const { likeCount, viewCount } = videoData.statistics
           const id = videoData.id
-          video = { ...video, title: title, image: thumbnails.medium.url, releaseDate: publishedAt, likes: likeCount, views: viewCount, id: id }
+          video = { ...video, source: videoSource.toLowerCase(), title: title, image: thumbnails.medium.url, releaseDate: publishedAt, likes: likeCount, views: viewCount, id: id }
           setVideoList([...videosList, video]);
         });
         break;
       case 'Vimeo':
         await getVimeoVideoInfo(inputValue).then(async resp => {
           const { title, upload_date, thumbnail_url, video_id } = resp.data;
-          video = { ...video, title: title, image: thumbnail_url, releaseDate: upload_date.split(' ')[0], id: video_id }
+          video = { ...video, source: videoSource.toLowerCase(), title: title, image: thumbnail_url, releaseDate: upload_date.split(' ')[0], id: video_id }
           await getVimeoDetailedInfo(video_id).then(async resp => {
             const likes = resp.data.data[0].metadata.connections.likes.total
             video = { ...video, likes: likes }
@@ -110,7 +111,7 @@ function MainView() {
        <FeaturedVideos />
       </section>
       <section className="user-videos">
-      <VideosList videoList={videosList} videoSource={videoSource} onClick={deleteVideo}/>
+      <VideosList videoList={videosList} videoSource={videoSource} onClick={deleteVideo} />
       </section>
      </Container>
   );

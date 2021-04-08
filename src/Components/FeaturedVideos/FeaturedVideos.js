@@ -20,7 +20,7 @@ const items = [
   }
 ];
 
-function FeaturedVideos({ src }) {
+function FeaturedVideos() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
 
