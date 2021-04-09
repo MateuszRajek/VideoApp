@@ -1,34 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Col, Row } from 'reactstrap';
+import Btn from '../Button/Button';
 import VideoCard from '../VideoCard/VideoCard';
 import './VideosList.css';
 
-function VideosList({ videoList }) {
-  const videos = videoList
+function VideosList({ videoList, onClick, setModal, setVideoId, setSource, toggleFavourite, favouriteVideosList }) {
+  const [isFavourite, setFavourite] = useState(false)
+  const videos = videoList;
+  const favouriteVideos = favouriteVideosList;
 
   return (
     <>
-    <h2>My Videos</h2>
+    <Btn text={"All Videos"} className={'videos-list__btn'} onClick={() => setFavourite(false)} />
+    <Btn text={"Favourite Videos"} className={'videos-list__btn'} onClick={() => setFavourite(true)} />
       <Row>
-      {videos.map(video => {
-       const { image, likes, releaseDate, title, views, id} = video
+      {!isFavourite && videos.map(video => {
+       const { source, image, likes, releaseDate, title, views, id, favourite} = video
         return (
-          <Col className="card__column">
-            <VideoCard videoId={id}
-             likes={likes}  
-             title={title} 
-             views={views? views : 'Data not found'}
-             publishedDate={releaseDate}
-             image={image}
-             key={id} 
-             />
+          <Col className="card__column" key={id}>
+            <VideoCard 
+              source={source}
+              videoId={id}
+              likes={likes}  
+              title={title} 
+              views={views? views : 'Data not found'}
+              publishedDate={releaseDate}
+              image={image}
+              favourite={favourite}
+              onClick={() => onClick(id)}
+              setModal={setModal}
+              setVideoId={setVideoId}
+              setSource={setSource}
+              toggleFavourite={toggleFavourite}
+            />
+          </Col>
+        )
+      })}
+      {isFavourite && favouriteVideos.map(video => {
+        const { source, image, likes, releaseDate, title, views, id, favourite} = video
+        return (
+          <Col className="card__column" key={id}>
+            <VideoCard 
+              source={source}
+              videoId={id}
+              likes={likes}  
+              title={title} 
+              views={views? views : 'Data not found'}
+              publishedDate={releaseDate}
+              image={image}
+              favourite={favourite}
+              onClick={() => onClick(id)}
+              setModal={setModal}
+              setVideoId={setVideoId}
+              setSource={setSource}
+              toggleFavourite={toggleFavourite}
+            />
           </Col>
         )
       })}
     </Row>
     </>
-    
-  
   );
 }
 

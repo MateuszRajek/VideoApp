@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 const APIKeyYouTube = '';
-const APIkeyVimeo = '';
+const APIKeyVimeo = '';
 
 
-export const getYouTubeVideoInfo = video => {;
+export const getYouTubeVideoInfo = video => {
   return axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${video}&key=${APIKeyYouTube}`)
   .then(resp => {
     const videoId = resp.data.items[0].id.videoId
@@ -17,6 +17,6 @@ export const getVimeoVideoInfo = video => {
 }
 
 export const getVimeoDetailedInfo = id => {
-  return axios.get(`https://api.vimeo.com/videos?uris=/videos/${id}&fields=metadata&access_token=${APIkeyVimeo}`);
+  return axios.get(`https://api.vimeo.com/videos?uris=/videos/${id}&fields=metadata&access_token=${APIKeyVimeo}`);
 }
 

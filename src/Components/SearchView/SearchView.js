@@ -21,7 +21,7 @@ function SearchView({ onChange, onSubmit, onClick, source }) {
         </Dropdown>
           <Input placeholder="Video URL" onChange={onChange}/>
           <InputGroupAddon addonType="append">
-            <Btn outlineColor='info' text='Add a video' />
+            <Btn color='info' text='Add a video' />
           </InputGroupAddon>
       </InputGroup>
     </form>
