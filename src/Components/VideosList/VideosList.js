@@ -3,9 +3,9 @@ import { Col, Row } from 'reactstrap';
 import VideoCard from '../VideoCard/VideoCard';
 import './VideosList.css';
 
-function VideosList({ videoList, onClick }) {
+function VideosList({ videoList, onClick, setModal, setVideoId, setSource }) {
   const videos = videoList
-  
+
   return (
     <>
     <h2>My Videos</h2>
@@ -23,6 +23,9 @@ function VideosList({ videoList, onClick }) {
               publishedDate={releaseDate}
               image={image}
               onClick={() => onClick(id)}
+              setModal={setModal}
+              setVideoId={setVideoId}
+              setSource={setSource}
             />
           </Col>
         )

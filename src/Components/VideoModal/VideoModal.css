@@ -1,0 +1,26 @@
+.card__image {
+  height: 250px;
+}
+
+.card__column.col {
+  height: auto;
+  max-width: 50%;
+}
+
+.card__wrapper {
+  height: 100%;
+}
+
+.card {
+  height: 100%;
+}
+
+.card__buttons {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.card__buttons .btn{
+  margin: 5px 0;
+}

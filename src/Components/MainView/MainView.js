@@ -5,11 +5,15 @@ import FeaturedVideos from '../FeaturedVideos/FeaturedVideos';
 import { getYouTubeVideoInfo, getVimeoVideoInfo, getVimeoDetailedInfo } from '../../requests.js';
 import VideosList from '../VideosList/VideosList';
 import './MainView.css';
+import VideoModal from '../VideoModal/VideoModal';
 
 function MainView() {
   const [inputValue, setInputValue] = useState('');
   const [videosList, setVideoList] = useState([]);
   const [videoSource, setVideoSource] = useState('Choose video source');
+  const [modal, setModal] = useState(false);
+  const [videoId, setVideoId] = useState('');
+  const [source, setSource] = useState('')
   
   const onButtonSubmit = event => {
     event.preventDefault();
@@ -95,6 +99,8 @@ function MainView() {
     reRenderVideoList()
   }
 
+
+
   useEffect(reRenderVideoList, [])
 
   return (
@@ -111,8 +117,9 @@ function MainView() {
        <FeaturedVideos />
       </section>
       <section className="user-videos">
-      <VideosList videoList={videosList} videoSource={videoSource} onClick={deleteVideo} />
+      <VideosList videoList={videosList} videoSource={videoSource} onClick={deleteVideo} setModal={setModal} setVideoId={setVideoId} setSource={setSource} />
       </section>
+      <VideoModal modal={modal} setModal={setModal} videoId={videoId} source={source} />
      </Container>
   );
 }
