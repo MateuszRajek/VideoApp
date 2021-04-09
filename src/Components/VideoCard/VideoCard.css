@@ -1,5 +1,6 @@
 .card__image {
   height: 250px;
+  cursor: pointer;
 }
 
 .card__column.col {

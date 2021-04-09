@@ -21,7 +21,7 @@ function VideoCard({ likes, title, views, publishedDate, image, videoId, onClick
       <div className="card__wrapper">
         <Card>
           <img className="card__image" src={image} alt="video thumbnail" onClick={() => {
-            toggle()
+            toggle(true)
             getId(videoId)
             getSource(source)
             }}/>
