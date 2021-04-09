@@ -5,18 +5,12 @@ import './FeaturedVideos.css';
 const items = [
   {
     src: "https://www.youtube.com/embed/lSAz2ONC1rk",
-    altText: 'Slide 1',
-    caption: 'Slide 1'
   },
   {
     src: "https://www.youtube.com/embed/C0rlAYYnb0U",
-    altText: 'Slide 2',
-    caption: 'Slide 2'
   },
   {
     src: "https://www.youtube.com/embed/v2XoBeZQ0YQ",
-    altText: 'Slide 3',
-    caption: 'Slide 3'
   }
 ];
 

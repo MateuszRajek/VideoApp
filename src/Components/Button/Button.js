@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 
-function Btn({ color, text, onClick }) {
+function Btn({ color, text, onClick, className }) {
   let outlineColor
 
 
@@ -16,11 +16,11 @@ function Btn({ color, text, onClick }) {
       outlineColor = 'success';
       break;
     default:
-      outlineColor = 'primary'
+      outlineColor = 'primary';
   }
 
   return (
-  <Button outline color={outlineColor} onClick={onClick}>
+  <Button outline color={outlineColor} onClick={onClick} className={className} >
     {`${text}`}
     </Button>
   );

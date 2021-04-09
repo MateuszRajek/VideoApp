@@ -3,7 +3,7 @@ import { Card, CardText, CardBody,CardTitle, CardSubtitle } from 'reactstrap';
 import Btn from '../Button/Button';
 import './VideoCard.css';
 
-function VideoCard({ likes, title, views, publishedDate, image, videoId, onClick, source, setModal, setVideoId, setSource }) {
+function VideoCard({ likes, title, views, publishedDate, image, videoId, onClick, source, favourite, setModal, setVideoId, setSource, toggleFavourite }) {
 
   const toggle = prop => {
     setModal(prop);
@@ -16,7 +16,20 @@ function VideoCard({ likes, title, views, publishedDate, image, videoId, onClick
   const getSource = source => {
     setSource(source)
   }
-  
+
+  let text
+
+  switch(favourite) {
+    case 0:
+      text = "Add to favourite";
+      break;
+    case 1:
+      text = "Remove from favourite";
+      break;
+    default:
+      text = "favourite";
+  }
+
   return (
       <div className="card__wrapper">
         <Card>
@@ -36,7 +49,7 @@ function VideoCard({ likes, title, views, publishedDate, image, videoId, onClick
                 getId(videoId)
                 getSource(source)
                 }} />
-              <Btn color={'success'} text={'Add to favourite'} />
+              <Btn color={'success'} text={text} onClick={() => toggleFavourite(videoId)} />
               <Btn color={'danger'} text={'Remove'} onClick={() => onClick(videoId)} />
             </div>  
           </CardBody>
