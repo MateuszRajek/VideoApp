@@ -6,13 +6,34 @@ import './VideosList.css';
 
 function VideosList({ videoList, onClick, setModal, setVideoId, setSource, toggleFavourite, favouriteVideosList }) {
   const [isFavourite, setFavourite] = useState(false)
+  const [active, setActive] = useState('All Videos')
   const videos = videoList;
   const favouriteVideos = favouriteVideosList;
+  const buttons = ['All Videos', 'Favourite Videos']
+
+  const updateStates = button => {
+    setActive(button)
+    let favourite
+    switch(button) {
+      case 'All Videos':
+        favourite = false
+        break;
+      case 'Favourite Videos':
+        favourite = true;
+        break;
+        default:
+          favourite = false;
+    }
+    setFavourite(favourite)
+  }
 
   return (
     <>
-    <Btn text={"All Videos"} className={'videos-list__btn'} onClick={() => setFavourite(false)} />
-    <Btn text={"Favourite Videos"} className={'videos-list__btn'} onClick={() => setFavourite(true)} />
+    {buttons.map(button => {
+      return (
+        <Btn text={button} size={button === active && 'lg'} className={'videos-list__btn'} onClick={() => updateStates(button)} />
+      )
+    })}
       <Row>
       {!isFavourite && videos.map(video => {
        const { source, image, likes, releaseDate, title, views, id, favourite} = video
