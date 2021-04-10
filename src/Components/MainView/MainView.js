@@ -56,6 +56,7 @@ function MainView() {
 
   const reRenderVideoList = () => {
     getItemsFromLocalStorage();
+    updateFavouriteVideosList();
   }
   
   const getAndRenderMyVideos = async () => {
