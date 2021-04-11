@@ -9,7 +9,7 @@ function VideoModal({ source, modal, title, videoId, setModal }) {
     setModal(prop);
   }
 
-  let src
+  let src;
 
   switch(source) {
     case 'youtube':

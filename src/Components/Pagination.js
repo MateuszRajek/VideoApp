@@ -10,8 +10,8 @@ function PaginationComponent({ videosPerPage, totalVideos, paginate, firstPage }
   }
 
   useEffect(() => {
-    setActive(1)
-  }, [firstPage])
+    setActive(1);
+  }, [firstPage]);
 
   return (
     <Pagination>
