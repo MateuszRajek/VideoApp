@@ -1,0 +1,42 @@
+.card__image {
+  height: 150px;
+  cursor: pointer;
+}
+
+.card__column.col {
+  height: auto;
+  max-width: 50%;
+  margin: 15px 0;
+}
+
+.card {
+  justify-content: space-between;
+  height: 100%;
+}
+
+.card__buttons {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 5px;
+}
+
+.card__buttons .btn{
+  margin: 5px 0;
+}
+
+.card__wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 568px) {
+  .row {
+    justify-content: center;
+  }
+
+  .row .card__column.col {
+    width: 80%;
+    max-width: 100%;
+  }
+}
