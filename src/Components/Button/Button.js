@@ -15,6 +15,9 @@ function Btn({ color, text, onClick, className, size, icon }) {
     case 'success':
       outlineColor = 'success';
       break;
+    case 'link':
+      outlineColor = 'link';
+      break;
     default:
       outlineColor = 'primary';
   }

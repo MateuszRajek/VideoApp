@@ -2,13 +2,13 @@
   height: 100%
 }
 
-.views__icons {
+.views__icons img {
   display: none;
 }
 
 @media screen and (min-width: 768px) {
 
-  .views__icons {
+  .views__icons img{
     display: inline-flex;;
   }
 

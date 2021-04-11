@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Btn from '../Button/Button';
 import PaginationComponent from '../Pagination';
-import ListIcon from '../../assets/icons/icons8-grid-view.png';
-import GridIcon from '../../assets/icons/icons8-list-view.png';
+import GridIcon from '../../assets/icons/icons8-grid-view.png';
+import ListIcon from '../../assets/icons/icons8-list-view.png';
 import './VideosList.css';
 import GridView from './GridView/GridView';
 import ListView from './ListView/ListView';
@@ -12,9 +12,10 @@ function VideosList({ videoList, onClick, setModal, setVideoId, setSource, toggl
   const [active, setActive] = useState('All Videos')
   const [currentPage, setCurrentPage] = useState(1);
   const [videosPerPage] = useState(10);
+  const [displayView, setDisplayView] = useState('grid');
   const buttons = ['All Videos', 'Favourite Videos']
   const videosList = isFavourite ? favouriteVideosList : videoList;
-  const icons = [ListIcon, GridIcon]
+  const icons = ['grid', 'list'];
 
   const updateStates = button => {
     setActive(button)
@@ -39,6 +40,13 @@ function VideosList({ videoList, onClick, setModal, setVideoId, setSource, toggl
 
   const paginate = pageNumber => setCurrentPage(pageNumber)
 
+  let iconClassName
+  const toggleDisplay = icon => {
+    icon === 'list' ? setDisplayView('list') : setDisplayView('grid');
+    
+    
+  }
+
   return (
     <>
     <nav>
@@ -49,11 +57,11 @@ function VideosList({ videoList, onClick, setModal, setVideoId, setSource, toggl
       })}
       {icons.map(icon => {
         return (
-          <img src={icon} alt={'view-icon'} className={'views__icons'} ></img>
+          <Btn color={'link'} icon={icon === 'list' ? ListIcon : GridIcon} className={`views__icons ${icon === displayView ? 'active' : ''}`} onClick={() => toggleDisplay(icon)} />
         )
       })}
     </nav>
-          {<GridView 
+          {displayView === 'grid' && <GridView 
             videosList={currentVideos}
             onClick={onClick}
             setModal={setModal}
@@ -61,7 +69,7 @@ function VideosList({ videoList, onClick, setModal, setVideoId, setSource, toggl
             setSource={setSource}
             toggleFavourite={toggleFavourite}
           />}  
-          {<ListView 
+          {displayView === 'list' && <ListView 
             videosList={currentVideos}
             onClick={onClick}
             setModal={setModal}
