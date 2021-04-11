@@ -26,10 +26,12 @@ function VideoModal({ source, modal, title, videoId, setModal }) {
         <Modal isOpen={modal} >
           <ModalHeader>{title}</ModalHeader>
           <ModalBody>
-          <iframe width="100%" height="315" src={src} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+          <iframe width='100%' height='315' src={src} title='YouTube video player' 
+          frameBorder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'>
+          </iframe>
           </ModalBody>
           <ModalFooter>
-            <Btn text='Cancel' color="danger" onClick={() => toggle(false)} />
+            <Btn text='Cancel' color='danger' onClick={() => toggle(false)} />
           </ModalFooter>
         </Modal>
       </div>

@@ -19,7 +19,7 @@ function MainView() {
   const onButtonSubmit = event => {
     event.preventDefault();
     if (inputValue === '') {
-      alert('PLEASE INSERT FULL VIDEO URL OR VIDEO ID')
+      alert('PLEASE INSERT FULL VIDEO URL OR VIDEO ID');
     } else getAndRenderMyVideos();
     
   }
@@ -72,7 +72,7 @@ function MainView() {
       likes: '',
       views: '',
       id: '',
-      favourite: 1,
+      favourite: 0,
     }
 
     switch(videoSource) {
@@ -86,7 +86,7 @@ function MainView() {
           video = { ...video, source: videoSource.toLowerCase(), title: title, image: thumbnails.medium.url, 
             releaseDate: publishedAt.split('T')[0], likes: likeCount, views: viewCount, id: id };
           setVideoList([...videosList, video]);
-        });
+        }).catch(error => alert(`${error.message} | Please check if your API key, video url or video id are correct`));
         break;
       case 'Vimeo':
         await getVimeoVideoInfo(inputValue).then(async resp => {
@@ -98,10 +98,10 @@ function MainView() {
             video = { ...video, likes: likes };
             setVideoList([...videosList, video]);
           })  
-        })
+        }).catch(error => alert(`${error.message} | Please check if your API key, video url or video id are correct`));
         break;
         case 'Choose video source':
-          alert('YOU HAVE TO ONE OF SOURCES AVAILABLE');
+          alert('YOU HAVE TO CHOOSE ONE OF THE SOURCES AVAILABLE');
           break;
         default :
     }   
@@ -142,7 +142,7 @@ function MainView() {
 
   return (
     <Container>
-      <section className="search__bar">
+      <section className='search__bar'>
         <SearchView 
         onChange={onInputChange} 
         onSubmit={onButtonSubmit} 
@@ -150,10 +150,10 @@ function MainView() {
         source={videoSource} 
         />
       </section>
-      <section className="featured-videos">
+      <section className='featured-videos'>
        <FeaturedVideos />
       </section>
-      <section className="user-videos">
+      <section className='user-videos'>
       <VideosList videoList={videosList} 
       videoSource={videoSource} 
       onClick={deleteVideo} 

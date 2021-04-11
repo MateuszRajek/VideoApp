@@ -3,7 +3,8 @@ import { Card, CardText, CardBody,CardTitle, CardSubtitle } from 'reactstrap';
 import Btn from '../Button/Button';
 import './VideoCard.css';
 
-function VideoCard({ likes, title, views, publishedDate, image, videoId, onClick, source, favourite, setModal, setVideoId, setSource, toggleFavourite, className }) {
+function VideoCard({ likes, title, views, publishedDate, image, videoId, onClick, source, 
+  favourite, setModal, setVideoId, setSource, toggleFavourite, className }) {
 
   const toggle = prop => {
     setModal(prop);
@@ -21,26 +22,26 @@ function VideoCard({ likes, title, views, publishedDate, image, videoId, onClick
 
   switch(favourite) {
     case 0:
-      text = "Add to favourite";
+      text = 'Add to favourite';
       break;
     case 1:
-      text = "Remove from favourite";
+      text = 'Remove from favourite';
       break;
     default:
-      text = "favourite";
+      text = 'favourite';
   }
 
   return (
         <Card className={className ? className : null}>
           <div className={'card__wrapper'}>
-            <img className="card__image" src={image} alt="video thumbnail" onClick={() => {
+            <img className='card__image' src={image} alt='video thumbnail' onClick={() => {
               toggle(true)
               getId(videoId)
               getSource(source)
               }}/>
             <CardBody>
-              <CardTitle tag="h5">{`Title: ${title}`}</CardTitle>
-              <CardSubtitle tag="h6" className="mb-2 text-muted">{`Published at: ${publishedDate.split('T')[0]}`}</CardSubtitle>
+              <CardTitle tag='h5'>{`Title: ${title}`}</CardTitle>
+              <CardSubtitle tag='h6' className='mb-2 text-muted'>{`Published at: ${publishedDate.split('T')[0]}`}</CardSubtitle>
               <CardText> {`Likes: ${likes}`}</CardText>
               <CardText> {`Views: ${views}`}</CardText> 
             </CardBody>

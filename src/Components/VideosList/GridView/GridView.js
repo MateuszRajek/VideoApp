@@ -1,7 +1,6 @@
 import React from 'react';
 import { Col, Row } from 'reactstrap';
 import VideoCard from '../../VideoCard/VideoCard';
-import './GridView.css';
 
 function GridView({ videosList, onClick, setModal, setVideoId, setSource, toggleFavourite }) {
 
@@ -10,7 +9,7 @@ function GridView({ videosList, onClick, setModal, setVideoId, setSource, toggle
              {videosList.map(video => {
               const { source, image, likes, releaseDate, title, views, id, favourite} = video;
               return (
-                <Col className="card__column" key={id}>
+                <Col className='card__column' key={id}>
                 <VideoCard 
                   source={source}
                   videoId={id}

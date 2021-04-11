@@ -2,16 +2,22 @@ import React, { useState } from 'react';
 import { Carousel, CarouselItem, CarouselIndicators } from 'reactstrap';
 import './FeaturedVideos.css';
 
-const items = [
+const featuredVideos = [
   {
-    src: "https://www.youtube.com/embed/lSAz2ONC1rk",
+    id: 'povY6y1AXD0',
   },
   {
-    src: "https://www.youtube.com/embed/C0rlAYYnb0U",
+    id: 'C0rlAYYnb0U',
   },
   {
-    src: "https://www.youtube.com/embed/v2XoBeZQ0YQ",
-  }
+    id: 'v2XoBeZQ0YQ',
+  },
+  {
+    id: 'lSAz2ONC1rk',
+  },
+  {
+    id: 'EsKVSU-Eqok',
+  },
 ];
 
 function FeaturedVideos() {
@@ -20,42 +26,44 @@ function FeaturedVideos() {
 
   const next = () => {
     if (animating) return;
-    const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
+    const nextIndex = activeIndex === featuredVideos.length - 1 ? 0 : activeIndex + 1;
     setActiveIndex(nextIndex);
   }
 
   const previous = () => {
     if (animating) return;
-    const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
+    const nextIndex = activeIndex === 0 ? featuredVideos.length - 1 : activeIndex - 1;
     setActiveIndex(nextIndex);
   }
 
-  const goToIndex = (newIndex) => {
+  const goToIndex = newIndex => {
     if (animating) return;
     setActiveIndex(newIndex);
   }
 
-  const slides = items.map((item) => {
+  const slides = featuredVideos.map(item => {
     return (
       <CarouselItem
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
         key={item.src}
       >
-        <iframe width="560" height="315" src={item.src} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+        <iframe className={'featured-videos'} src={`https://www.youtube.com/embed/${item.id}`} title='YouTube video player' frameBorder='0' 
+        allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'>
+        </iframe>
       </CarouselItem>
     );
   });
 
   return (
     <>
-    <h2>Featured Videos</h2>
+    <h4>Featured Videos</h4>
     <Carousel
       activeIndex={activeIndex}
       next={next}
       previous={previous}
     >
-      <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
+      <CarouselIndicators items={featuredVideos} activeIndex={activeIndex} onClickHandler={goToIndex} />
       {slides}
     </Carousel>
     </>

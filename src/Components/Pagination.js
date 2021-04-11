@@ -21,7 +21,7 @@ function PaginationComponent({ videosPerPage, totalVideos, paginate, firstPage }
           <PaginationLink onClick={() => {
             paginate(number)
             setActive(number)
-            }} href="#">
+            }} href='#'>
             {number}
           </PaginationLink>
        </PaginationItem>)   
