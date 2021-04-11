@@ -10,14 +10,14 @@ function VideoCard({ likes, title, views, publishedDate, image, videoId, onClick
   }
 
   const getId = id => {
-    setVideoId(id)
+    setVideoId(id);
   }
 
   const getSource = source => {
-    setSource(source)
+    setSource(source);
   }
 
-  let text
+  let text;
 
   switch(favourite) {
     case 0:

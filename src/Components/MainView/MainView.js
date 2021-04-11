@@ -18,7 +18,10 @@ function MainView() {
   
   const onButtonSubmit = event => {
     event.preventDefault();
-    getAndRenderMyVideos();
+    if (inputValue === '') {
+      alert('PLEASE INSERT FULL VIDEO URL OR VIDEO ID')
+    } else getAndRenderMyVideos();
+    
   }
   
   const onInputChange = event => {
@@ -34,7 +37,7 @@ function MainView() {
   }
 
   const getItemsFromLocalStorage = () => {
-    const video = []
+    const video = [];
   
     for (let item in localStorage) {
       if(localStorage.hasOwnProperty(item) && item.startsWith('video-id')) {
@@ -80,14 +83,16 @@ function MainView() {
           const { title, publishedAt, thumbnails } = videoData.snippet;
           const { likeCount, viewCount } = videoData.statistics;
           const id = videoData.id;
-          video = { ...video, source: videoSource.toLowerCase(), title: title, image: thumbnails.medium.url, releaseDate: publishedAt, likes: likeCount, views: viewCount, id: id };
+          video = { ...video, source: videoSource.toLowerCase(), title: title, image: thumbnails.medium.url, 
+            releaseDate: publishedAt.split('T')[0], likes: likeCount, views: viewCount, id: id };
           setVideoList([...videosList, video]);
         });
         break;
       case 'Vimeo':
         await getVimeoVideoInfo(inputValue).then(async resp => {
           const { title, upload_date, thumbnail_url, video_id } = resp.data;
-          video = { ...video, source: videoSource.toLowerCase(), title: title, image: thumbnail_url, releaseDate: upload_date.split(' ')[0], id: video_id };
+          video = { ...video, source: videoSource.toLowerCase(), title: title, image: thumbnail_url, 
+            releaseDate: upload_date.split(' ')[0], id: video_id };
           await getVimeoDetailedInfo(video_id).then(async resp => {
             const likes = resp.data.data[0].metadata.connections.likes.total;
             video = { ...video, likes: likes };
@@ -95,10 +100,13 @@ function MainView() {
           })  
         })
         break;
+        case 'Choose video source':
+          alert('YOU HAVE TO ONE OF SOURCES AVAILABLE');
+          break;
         default :
     }   
 
-    addVideoToLocalStorage(video.id, video)
+    addVideoToLocalStorage(video.id, video);
     reRenderVideoList();
   } 
 
@@ -116,18 +124,18 @@ function MainView() {
   }
 
   const updateFavouriteVideosList = () => {
-    const favourite = []
+    const favourite = [];
   
     for (let item in localStorage) {
       if(localStorage.hasOwnProperty(item) && item.startsWith('video-id')) {
         const itemsFromLocalStorage = localStorage.getItem(item);
         const video = JSON.parse(itemsFromLocalStorage);
         if(video.favourite === 1){
-          favourite.push(video)
+          favourite.push(video);
         }
       }  
     }
-    setFavouriteList(favourite)
+    setFavouriteList(favourite);
   }
 
   useEffect(reRenderVideoList, [])

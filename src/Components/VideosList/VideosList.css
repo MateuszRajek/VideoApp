@@ -16,3 +16,7 @@
 .views__icons.btn.btn-outline-link {
   padding: 0;
 }
+
+.sort-by-dropdown {
+  display: inline-flex;
+}

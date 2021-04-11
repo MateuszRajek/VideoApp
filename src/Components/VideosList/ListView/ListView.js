@@ -8,7 +8,7 @@ function ListView({ videosList, onClick, setModal, setVideoId, setSource, toggle
         return (
             <Row className={'list-view__row'}>
              {videosList.map(video => {
-              const { source, image, likes, releaseDate, title, views, id, favourite} = video
+              const { source, image, likes, releaseDate, title, views, id, favourite} = video;
               return (
                 <Col className="card__column list-view__column" key={id}>
                 <VideoCard className={'list-view__card'}

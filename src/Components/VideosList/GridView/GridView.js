@@ -8,7 +8,7 @@ function GridView({ videosList, onClick, setModal, setVideoId, setSource, toggle
         return (
             <Row>
              {videosList.map(video => {
-              const { source, image, likes, releaseDate, title, views, id, favourite} = video
+              const { source, image, likes, releaseDate, title, views, id, favourite} = video;
               return (
                 <Col className="card__column" key={id}>
                 <VideoCard 
