@@ -1,8 +1,18 @@
-.card__column {
-  height: 100%
-}
-
 .videos-list__btn.btn.btn-outline-primary {
   border-bottom: none;
   border-left: none;
+}
+
+.views__icons img {
+  height: 20px;
+  margin: 10px;
+}
+
+.active img{
+  height: 30px;
+  background-color: rgba(197, 188, 188, .6)
+}
+
+.views__icons.btn.btn-outline-link {
+  padding: 0;
 }
