@@ -1,14 +1,6 @@
-.card__image {
-  height: 250px;
-}
-
 .card__column.col {
   height: auto;
   max-width: 50%;
-}
-
-.card__wrapper {
-  height: 100%;
 }
 
 .card {

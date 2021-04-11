@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { Col, Row } from 'reactstrap';
 import Btn from '../Button/Button';
 import PaginationComponent from '../Pagination';
-import VideoCard from '../VideoCard/VideoCard';
+import ListIcon from '../../assets/icons/icons8-grid-view.png';
+import GridIcon from '../../assets/icons/icons8-list-view.png';
 import './VideosList.css';
+import GridView from './GridView/GridView';
+import ListView from './ListView/ListView';
 
 function VideosList({ videoList, onClick, setModal, setVideoId, setSource, toggleFavourite, favouriteVideosList }) {
   const [isFavourite, setFavourite] = useState(false)
@@ -12,6 +14,7 @@ function VideosList({ videoList, onClick, setModal, setVideoId, setSource, toggl
   const [videosPerPage] = useState(10);
   const buttons = ['All Videos', 'Favourite Videos']
   const videosList = isFavourite ? favouriteVideosList : videoList;
+  const icons = [ListIcon, GridIcon]
 
   const updateStates = button => {
     setActive(button)
@@ -22,6 +25,7 @@ function VideosList({ videoList, onClick, setModal, setVideoId, setSource, toggl
         break;
       case 'Favourite Videos':
         favourite = true;
+        setCurrentPage(1)
         break;
         default:
           favourite = false;
@@ -37,36 +41,35 @@ function VideosList({ videoList, onClick, setModal, setVideoId, setSource, toggl
 
   return (
     <>
-    {buttons.map(button => {
-      return (
-        <Btn key={button} text={button} size={button === active ? 'lg' : '' } className={'videos-list__btn'} onClick={() => updateStates(button)} />
-      )
-    })}
-      <Row>
-      {currentVideos.map(video => {
-       const { source, image, likes, releaseDate, title, views, id, favourite} = video
+    <nav>
+      {buttons.map(button => {
         return (
-          <Col className="card__column" key={id}>
-            <VideoCard 
-              source={source}
-              videoId={id}
-              likes={likes}  
-              title={title} 
-              views={views? views : 'Data not found'}
-              publishedDate={releaseDate}
-              image={image}
-              favourite={favourite}
-              onClick={() => onClick(id)}
-              setModal={setModal}
-              setVideoId={setVideoId}
-              setSource={setSource}
-              toggleFavourite={toggleFavourite}
-            />
-          </Col>
-        )})}
-        
-    </Row>
-    <PaginationComponent videosPerPage={videosPerPage} totalVideos={videosList.length} paginate={paginate} />
+          <Btn key={button} text={button} size={button === active ? 'lg' : '' } className={'videos-list__btn'} onClick={() => updateStates(button)} />
+        )
+      })}
+      {icons.map(icon => {
+        return (
+          <img src={icon} alt={'view-icon'} className={'views__icons'} ></img>
+        )
+      })}
+    </nav>
+          {<GridView 
+            videosList={currentVideos}
+            onClick={onClick}
+            setModal={setModal}
+            setVideoId={setVideoId}
+            setSource={setSource}
+            toggleFavourite={toggleFavourite}
+          />}  
+          {<ListView 
+            videosList={currentVideos}
+            onClick={onClick}
+            setModal={setModal}
+            setVideoId={setVideoId}
+            setSource={setSource}
+            toggleFavourite={toggleFavourite}
+          />}    
+    <PaginationComponent videosPerPage={videosPerPage} totalVideos={videosList.length} paginate={paginate} firstPage={isFavourite} />
     </>
   );
 }

@@ -1,8 +1,13 @@
-.card__column {
-  height: 100%
-}
-
 .videos-list__btn.btn.btn-outline-primary {
   border-bottom: none;
   border-left: none;
+}
+
+.views__icons {
+  height: 20px;
+  margin: 10px;
+}
+
+.active__icon {
+  height: 30px;
 }

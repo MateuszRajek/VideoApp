@@ -5,7 +5,6 @@ import FeaturedVideos from '../FeaturedVideos/FeaturedVideos';
 import { getYouTubeVideoInfo, getVimeoVideoInfo, getVimeoDetailedInfo } from '../../requests.js';
 import VideosList from '../VideosList/VideosList';
 import VideoModal from '../VideoModal/VideoModal';
-// import PaginationComponent from '../Pagination';
 import './MainView.css';
 
 function MainView() {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 
-function Btn({ color, text, onClick, className, size }) {
+function Btn({ color, text, onClick, className, size, icon }) {
   let outlineColor
 
 
@@ -21,7 +21,7 @@ function Btn({ color, text, onClick, className, size }) {
 
   return (
   <Button outline color={outlineColor} onClick={onClick} className={className} size={size} >
-    {`${text}`}
+    {text} {icon ? <img src={icon} alt={`${icon} logo`} /> : null}
     </Button>
   );
 }
