@@ -1,3 +1,36 @@
+# Title:
+
+Video App
+
+## Description:
+
+This App can be used to store Youtube and Vimeo videos.
+
+To add a video you must choose video source:
+![source](https://user-images.githubusercontent.com/62522817/114324445-e13c8d00-9b21-11eb-9426-8149a6223d50.png);
+
+The video can be added by inserting full url or video id only.
+
+Videos can be displayes as a list or grid view
+
+### list view:
+
+![videos view](https://user-images.githubusercontent.com/62522817/114324530-7e97c100-9b22-11eb-823f-93b58422a56f.png)
+
+### grid view:
+
+![grid view](https://user-images.githubusercontent.com/62522817/114324595-d6cec300-9b22-11eb-99fe-1c043ade112f.png)
+
+Favourite videos can be marked as favourite and displayed in a separate view. All videos can be sorted by a date added (oldest or newest).
+Each videos can be open and played in modal after clicking 'Watch' button or a video picture.
+
+### video modal
+
+![modal](https://user-images.githubusercontent.com/62522817/114324701-6ffdd980-9b23-11eb-90b7-c6fc26cf9962.png)
+
+All videos can be deleted by clicking the 'Delete All Videos' button.
+App uses localstorage, so all added videos will be still available after reopening web browser.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

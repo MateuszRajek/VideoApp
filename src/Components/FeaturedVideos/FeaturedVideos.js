@@ -41,34 +41,27 @@ function FeaturedVideos() {
     setActiveIndex(newIndex);
   }
 
-  const slides = featuredVideos.map(item => {
-    return (
-      <CarouselItem
-        onExiting={() => setAnimating(true)}
-        onExited={() => setAnimating(false)}
-        key={item.src}
-      >
-        <iframe className={'featured-videos'} src={`https://www.youtube.com/embed/${item.id}`} title='YouTube video player' frameBorder='0' 
-        allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'>
-        </iframe>
-      </CarouselItem>
-    );
-  });
-
   return (
     <>
     <h4>Featured Videos</h4>
-    <Carousel
-      activeIndex={activeIndex}
-      next={next}
-      previous={previous}
-    >
+    <Carousel activeIndex={activeIndex} next={next} previous={previous}>
       <CarouselIndicators items={featuredVideos} activeIndex={activeIndex} onClickHandler={goToIndex} />
-      {slides}
+      {featuredVideos.map(item => {
+        return (
+          <CarouselItem
+            onExiting={() => setAnimating(true)}
+            onExited={() => setAnimating(false)}
+            key={item.id}
+          >
+            <iframe className={'featured-videos'} src={`https://www.youtube.com/embed/${item.id}`} title='YouTube video player' frameBorder='0' 
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'>
+            </iframe>
+          </CarouselItem>
+        );
+      })}
     </Carousel>
     </>
-  );
-  
-}
+  ); 
+};
 
 export default FeaturedVideos;

@@ -8,7 +8,7 @@ import GridView from './GridView/GridView';
 import ListView from './ListView/ListView';
 import { DropdownToggle, DropdownMenu, DropdownItem, Dropdown } from 'reactstrap';
 
-function VideosList({ videoList, onClick, setModal, setVideoId, setSource, toggleFavourite, favouriteVideosList }) {
+function VideosList({ videoList, onClick, setModal, setVideoId, setSource, toggleFavourite, favouriteVideosList, deleteAllVideos }) {
   const [isFavourite, setFavourite] = useState(false);
   const [active, setActive] = useState('All Videos');
   const [currentPage, setCurrentPage] = useState(1);
@@ -98,7 +98,6 @@ function VideosList({ videoList, onClick, setModal, setVideoId, setSource, toggl
           onClick={() => toggleDisplay(icon)} />
         )
       })}
-
         <Dropdown className={'sort-by-dropdown'} isOpen={dropdownOpen} toggle={toggle}>
           <DropdownToggle caret>
             {'Sort'}
@@ -111,6 +110,7 @@ function VideosList({ videoList, onClick, setModal, setVideoId, setSource, toggl
             })}
           </DropdownMenu>
         </Dropdown>
+        <Btn color={'danger'} text={'Delete All Videos'} onClick={() => deleteAllVideos()}/>
     </nav>
           {displayView === 'grid' && <GridView 
             videosList={currentVideos}

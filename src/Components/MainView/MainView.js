@@ -86,6 +86,7 @@ function MainView() {
           video = { ...video, source: videoSource.toLowerCase(), title: title, image: thumbnails.medium.url, 
             releaseDate: publishedAt.split('T')[0], likes: likeCount, views: viewCount, id: id };
           setVideoList([...videosList, video]);
+          addVideoToLocalStorage(video.id, video);
         }).catch(error => alert(`${error.message} | Please check if your API key, video url or video id are correct`));
         break;
       case 'Vimeo':
@@ -97,6 +98,7 @@ function MainView() {
             const likes = resp.data.data[0].metadata.connections.likes.total;
             video = { ...video, likes: likes };
             setVideoList([...videosList, video]);
+            addVideoToLocalStorage(video.id, video);
           })  
         }).catch(error => alert(`${error.message} | Please check if your API key, video url or video id are correct`));
         break;
@@ -104,9 +106,7 @@ function MainView() {
           alert('YOU HAVE TO CHOOSE ONE OF THE SOURCES AVAILABLE');
           break;
         default :
-    }   
-
-    addVideoToLocalStorage(video.id, video);
+    }    
     reRenderVideoList();
   } 
 
@@ -138,6 +138,13 @@ function MainView() {
     setFavouriteList(favourite);
   }
 
+  const deleteAllVideos = () => {
+    if (window.confirm("Are you sure?")) {
+      localStorage.clear();
+      reRenderVideoList();
+    }    
+  }
+
   useEffect(reRenderVideoList, [])
 
   return (
@@ -161,6 +168,7 @@ function MainView() {
       setVideoId={setVideoId} 
       setSource={setSource} 
       toggleFavourite={toggleFavouriteVideo}
+      deleteAllVideos={deleteAllVideos}
       favouriteVideosList={favouriteVideosList}
       />
       </section>
