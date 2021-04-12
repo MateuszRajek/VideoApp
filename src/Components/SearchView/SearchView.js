@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { InputGroup, InputGroupAddon, Input, DropdownToggle, DropdownMenu, DropdownItem, Dropdown } from 'reactstrap';
 import Btn from '../Button/Button';
 
-function SearchView({ onChange, onSubmit, onClick, source }) {
+function SearchView({ onChange, onSubmit, onClick, source, inputValue }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggle = () => setDropdownOpen(prevState => !prevState);
 
@@ -18,7 +18,7 @@ function SearchView({ onChange, onSubmit, onClick, source }) {
           <DropdownItem onClick={onClick}>Vimeo</DropdownItem>
         </DropdownMenu>
         </Dropdown>
-          <Input placeholder='Video URL' onChange={onChange}/>
+          <Input placeholder='Video URL' onChange={onChange} value={inputValue}/>
           <InputGroupAddon addonType='append'>
             <Btn color='info' text='Add a video' />
           </InputGroupAddon>

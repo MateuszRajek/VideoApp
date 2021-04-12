@@ -21,7 +21,6 @@ function MainView() {
     if (inputValue === '') {
       alert('PLEASE INSERT FULL VIDEO URL OR VIDEO ID');
     } else getAndRenderMyVideos();
-    
   }
   
   const onInputChange = event => {
@@ -87,6 +86,7 @@ function MainView() {
             releaseDate: publishedAt.split('T')[0], likes: likeCount, views: viewCount, id: id };
           setVideoList([...videosList, video]);
           addVideoToLocalStorage(video.id, video);
+          setInputValue('');
         }).catch(error => alert(`${error.message} | Please check if your API key, video url or video id are correct`));
         break;
       case 'Vimeo':
@@ -99,6 +99,7 @@ function MainView() {
             video = { ...video, likes: likes };
             setVideoList([...videosList, video]);
             addVideoToLocalStorage(video.id, video);
+            setInputValue('');
           })  
         }).catch(error => alert(`${error.message} | Please check if your API key, video url or video id are correct`));
         break;
@@ -154,7 +155,8 @@ function MainView() {
         onChange={onInputChange} 
         onSubmit={onButtonSubmit} 
         onClick={chooseVideoSource} 
-        source={videoSource} 
+        source={videoSource}
+        inputValue={inputValue}
         />
       </section>
       <section className='featured-videos'>
