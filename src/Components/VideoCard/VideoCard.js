@@ -21,10 +21,10 @@ function VideoCard({ likes, title, views, publishedDate, image, videoId, onClick
   let text;
 
   switch(favourite) {
-    case 0:
+    case 'no':
       text = 'Add to favourite';
       break;
-    case 1:
+    case 'yes':
       text = 'Remove from favourite';
       break;
     default:
@@ -53,8 +53,8 @@ function VideoCard({ likes, title, views, publishedDate, image, videoId, onClick
                 getId(videoId)
                 getSource(source)
                 }} />
-              <Btn color={'success'} text={text} onClick={() => toggleFavourite(videoId)} />
-              <Btn color={'danger'} text={'Remove'} onClick={() => onClick(videoId)} />
+              <Btn {...{ color:'success', text }} onClick={() => toggleFavourite(videoId)} />
+              <Btn {...{ color:'danger', text:'Remove'}} onClick={() => onClick(videoId)} />
             </div>  
         </Card>
   );

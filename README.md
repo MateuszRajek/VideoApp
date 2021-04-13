@@ -7,6 +7,7 @@ Video App
 This App can be used to store Youtube and Vimeo videos.
 
 To add a video you must choose video source:
+
 ![source](https://user-images.githubusercontent.com/62522817/114324445-e13c8d00-9b21-11eb-9426-8149a6223d50.png);
 
 The video can be added by inserting full url or video id only.

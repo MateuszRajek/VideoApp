@@ -10,20 +10,8 @@ function GridView({ videosList, onClick, setModal, setVideoId, setSource, toggle
               const { source, image, likes, releaseDate, title, views, id, favourite} = video;
               return (
                 <Col className='card__column' key={id}>
-                <VideoCard 
-                  source={source}
-                  videoId={id}
-                  likes={likes}  
-                  title={title} 
-                  views={views ? views : 'Data not available'}
-                  publishedDate={releaseDate}
-                  image={image}
-                  favourite={favourite}
-                  onClick={onClick}
-                  setModal={setModal}
-                  setVideoId={setVideoId}
-                  setSource={setSource}
-                  toggleFavourite={toggleFavourite}
+                <VideoCard views={views ? views : 'Data not available'} {...{ source, videoId:id, likes, title, publishedDate:releaseDate, image, 
+                favourite, onClick, setModal, setVideoId, setSource, toggleFavourite}} 
                 />   
                 </Col>    
               )})}

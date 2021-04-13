@@ -9,16 +9,16 @@ function SearchView({ onChange, onSubmit, onClick, source, inputValue }) {
   return (
     <form onSubmit={onSubmit}>
       <InputGroup>
-        < Dropdown isOpen={dropdownOpen} toggle={toggle}>
+        < Dropdown {...{ isOpen:dropdownOpen, toggle }} >
           <DropdownToggle caret>
           {source}
         </DropdownToggle>
         <DropdownMenu>
-          <DropdownItem onClick={onClick}>YouTube</DropdownItem>
-          <DropdownItem onClick={onClick}>Vimeo</DropdownItem>
+          <DropdownItem {...{ onClick }}>YouTube</DropdownItem>
+          <DropdownItem {...{ onClick }}>Vimeo</DropdownItem>
         </DropdownMenu>
         </Dropdown>
-          <Input placeholder='Video URL' onChange={onChange} value={inputValue}/>
+          <Input placeholder='Video URL' {...{ onChange, value:inputValue }}/>
           <InputGroupAddon addonType='append'>
             <Btn color='info' text='Add a video' />
           </InputGroupAddon>
