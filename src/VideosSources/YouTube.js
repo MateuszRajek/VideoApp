@@ -1,4 +1,4 @@
-import { getYouTubeVideoInfo } from '../../requests';
+import { getYouTubeVideoInfo } from '../requests';
 
 export const fetchYoutubeData = async (inputValue, setVideoList, addVideoToLocalStorage, setInputValue, videoSource, videosList, video) => {
 
