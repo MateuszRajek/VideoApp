@@ -1,4 +1,4 @@
-import { getVimeoVideoInfo, getVimeoDetailedInfo } from '../../requests'
+import { getVimeoVideoInfo, getVimeoDetailedInfo } from '../requests'
 
 export const fetchVimeoData = async (inputValue, setVideoList, addVideoToLocalStorage, setInputValue, videoSource, videosList, video) => {
  

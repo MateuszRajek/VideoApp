@@ -4,8 +4,8 @@ import SearchView from '../SearchView/SearchView';
 import FeaturedVideos from '../FeaturedVideos/FeaturedVideos';
 import VideosList from '../VideosList/VideosList';
 import VideoModal from '../VideoModal/VideoModal';
-import { fetchYoutubeData } from '../VideosSources/YouTube';
-import { fetchVimeoData } from '../VideosSources/Vimeo';
+import { fetchYoutubeData } from '../../VideosSources/YouTube';
+import { fetchVimeoData } from '../../VideosSources/Vimeo';
 import './MainView.css';
 
 function MainView() {
