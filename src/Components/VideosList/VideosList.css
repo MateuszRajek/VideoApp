@@ -21,3 +21,8 @@
   display: inline-flex;
   margin: 5px 15px;
 }
+
+.list__btn.btn.btn-outline-primary {
+  border-bottom: none;
+  border-left: none;
+}
