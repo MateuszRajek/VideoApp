@@ -32,11 +32,7 @@ function FeaturedVideos() {
       <CarouselIndicators {...{ items:featuredVideos, activeIndex, onClickHandler:goToIndex }} />
       {featuredVideos.map(item => {
         return (
-          <CarouselItem
-            onExiting={() => setAnimating(true)}
-            onExited={() => setAnimating(false)}
-            key={item}
-          >
+          <CarouselItem {...{ onExiting:() => setAnimating(true), onExited:() => setAnimating(false), key:item }}>
             <iframe className={'featured-videos'} src={`https://www.youtube.com/embed/${item}`} title='YouTube video player' frameBorder='0' 
             allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'>
             </iframe>
