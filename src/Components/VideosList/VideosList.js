@@ -82,9 +82,7 @@ function VideosList({ videoList, onClick, setModal, setVideoId, setSource, toggl
     <nav>
       {buttons.map(button => {
         return (
-          <Btn {...{ key:button, text:button, className:'list__btn' }}
-          size={button === active ? 'lg' : '' }  
-          onClick={() => updateStates(button)} />
+          <Btn {...{ key:button, text:button, className:'list__btn', size:button === active ? 'lg' : '', onClick:() => updateStates(button) }} />
         )
       })}
       {icons.map(icon => {

@@ -53,8 +53,8 @@ function VideoCard({ likes, title, views, publishedDate, image, videoId, onClick
                 getId(videoId)
                 getSource(source)
                 }} />
-              <Btn {...{ color:'success', text }} onClick={() => toggleFavourite(videoId)} />
-              <Btn {...{ color:'danger', text:'Remove'}} onClick={() => onClick(videoId)} />
+              <Btn {...{ color:'success', text, onClick:() => toggleFavourite(videoId) }} />
+              <Btn {...{ color:'danger', text:'Remove', onClick:() => onClick(videoId) }}  />
             </div>  
         </Card>
   );

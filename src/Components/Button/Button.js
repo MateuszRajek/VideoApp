@@ -23,7 +23,7 @@ function Btn({ color, text, onClick, className, size, icon }) {
   }
 
   return (
-  <Button outline color={outlineColor} onClick={onClick} className={className} size={size} >
+  <Button outline {...{ color:outlineColor, onClick, className, size }} >
     {text} {icon ? <img src={icon} alt={`${icon} logo`} /> : null}
     </Button>
   );
