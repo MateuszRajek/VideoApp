@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Container } from 'reactstrap';
 import SearchView from '../SearchView/SearchView';
 import FeaturedVideos from '../FeaturedVideos/FeaturedVideos';
-import { getYouTubeVideoInfo, getVimeoVideoInfo, getVimeoDetailedInfo } from '../../requests.js';
 import VideosList from '../VideosList/VideosList';
 import VideoModal from '../VideoModal/VideoModal';
+import { fetchYoutubeData } from '../../VideosSources/YouTube';
+import { fetchVimeoData } from '../../VideosSources/Vimeo';
 import './MainView.css';
 
 function MainView() {
@@ -76,34 +77,10 @@ function MainView() {
 
     switch(videoSource) {
       case 'YouTube':
-        await getYouTubeVideoInfo(inputValue).then(resp => {
-          const { items } = resp.data;
-          const videoData = items[0];
-          const { title, publishedAt, thumbnails } = videoData.snippet;
-          const { likeCount, viewCount } = videoData.statistics;
-          const id = videoData.id;
-          video = { ...video, source: videoSource.toLowerCase(), title: title, image: thumbnails.medium.url, 
-            releaseDate: publishedAt.split('T')[0], likes: likeCount, views: viewCount, id: id };
-          setVideoList([...videosList, video]);
-          addVideoToLocalStorage(video.id, video);
-          setInputValue('');
-        }).catch(error => alert(`${error.message} | Please check if your API key, video url or video id are correct`));
+        fetchYoutubeData(inputValue, setVideoList, addVideoToLocalStorage, setInputValue, videoSource, videosList, video)
         break;
       case 'Vimeo':
-        await getVimeoVideoInfo(inputValue).then(async resp => {
-          console.log(resp)
-          const { title, upload_date, thumbnail_url, video_id } = resp.data;
-          video = { ...video, source: videoSource.toLowerCase(), title: title, image: thumbnail_url, 
-            releaseDate: upload_date.split(' ')[0], id: video_id };
-          await getVimeoDetailedInfo(video_id).then(async resp => {
-            console.log(resp)
-            const likes = resp.data.data[0].metadata.connections.likes.total;
-            video = { ...video, likes: likes };
-            setVideoList([...videosList, video]);
-            addVideoToLocalStorage(video.id, video);
-            setInputValue('');
-          })  
-        }).catch(error => alert(`${error.message} | Please check if your API key, video url or video id are correct`));
+        fetchVimeoData(inputValue, setVideoList, addVideoToLocalStorage, setInputValue, videoSource, videosList, video)
         break;
         case 'Choose video source':
           alert('YOU HAVE TO CHOOSE ONE OF THE SOURCES AVAILABLE');
