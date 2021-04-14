@@ -82,23 +82,20 @@ function VideosList({ videoList, onClick, setModal, setVideoId, setSource, toggl
     <nav>
       {buttons.map(button => {
         return (
-          <Btn key={button} text={button} 
-          size={button === active ? 'lg' : '' } 
-          className={'videos-list__btn'} 
+          <Btn {...{ key:button, text:button, className:'list__btn' }}
+          size={button === active ? 'lg' : '' }  
           onClick={() => updateStates(button)} />
         )
       })}
       {icons.map(icon => {
         return (
-          <Btn 
-          key={icon}
-          color={'link'} 
+          <Btn {...{ key:icon, color:'link' }}
           icon={icon === 'list' ? ListIcon : GridIcon} 
           className={`views__icons ${icon === displayView ? 'active' : ''}`} 
           onClick={() => toggleDisplay(icon)} />
         )
       })}
-        <Dropdown className={'sort-by-dropdown'} isOpen={dropdownOpen} toggle={toggle}>
+        <Dropdown {...{ className:'sort-by-dropdown', isOpen:dropdownOpen, toggle }}>
           <DropdownToggle caret>
             {'Sort'}
           </DropdownToggle>
@@ -110,25 +107,11 @@ function VideosList({ videoList, onClick, setModal, setVideoId, setSource, toggl
             })}
           </DropdownMenu>
         </Dropdown>
-        <Btn color={'danger'} text={'Delete All Videos'} onClick={() => deleteAllVideos()}/>
+        <Btn {...{ color:'danger', text:'Delete All Videos' }} onClick={() => deleteAllVideos()}/>
     </nav>
-          {displayView === 'grid' && <GridView 
-            videosList={currentVideos}
-            onClick={onClick}
-            setModal={setModal}
-            setVideoId={setVideoId}
-            setSource={setSource}
-            toggleFavourite={toggleFavourite}
-          />}  
-          {displayView === 'list' && <ListView 
-            videosList={currentVideos}
-            onClick={onClick}
-            setModal={setModal}
-            setVideoId={setVideoId}
-            setSource={setSource}
-            toggleFavourite={toggleFavourite}
-          />}    
-    <PaginationComponent videosPerPage={videosPerPage} totalVideos={videosList.length} paginate={paginate} firstPage={isFavourite} />
+          {displayView === 'grid' && <GridView {...{ videosList:currentVideos, onClick, setModal, setVideoId, setSource, toggleFavourite }} />}  
+          {displayView === 'list' && <ListView {...{ videosList:currentVideos, onClick, setModal, setVideoId, setSource, toggleFavourite }} />}    
+    <PaginationComponent {...{ videosPerPage, totalVideos:videosList.length, paginate, firstPage:isFavourite }} />
     </>
   );
 }
