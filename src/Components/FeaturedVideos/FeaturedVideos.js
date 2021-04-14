@@ -2,23 +2,7 @@ import React, { useState } from 'react';
 import { Carousel, CarouselItem, CarouselIndicators } from 'reactstrap';
 import './FeaturedVideos.css';
 
-const featuredVideos = [
-  {
-    id: 'povY6y1AXD0',
-  },
-  {
-    id: 'C0rlAYYnb0U',
-  },
-  {
-    id: 'v2XoBeZQ0YQ',
-  },
-  {
-    id: 'lSAz2ONC1rk',
-  },
-  {
-    id: 'EsKVSU-Eqok',
-  },
-];
+const featuredVideos = ['povY6y1AXD0', 'C0rlAYYnb0U', 'v2XoBeZQ0YQ', 'lSAz2ONC1rk', 'EsKVSU-Eqok']
 
 function FeaturedVideos() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -44,16 +28,16 @@ function FeaturedVideos() {
   return (
     <>
     <h4>Featured Videos</h4>
-    <Carousel activeIndex={activeIndex} next={next} previous={previous}>
-      <CarouselIndicators items={featuredVideos} activeIndex={activeIndex} onClickHandler={goToIndex} />
+    <Carousel {...{ activeIndex, next, previous }}>
+      <CarouselIndicators {...{ items:featuredVideos, activeIndex, onClickHandler:goToIndex }} />
       {featuredVideos.map(item => {
         return (
           <CarouselItem
             onExiting={() => setAnimating(true)}
             onExited={() => setAnimating(false)}
-            key={item.id}
+            key={item}
           >
-            <iframe className={'featured-videos'} src={`https://www.youtube.com/embed/${item.id}`} title='YouTube video player' frameBorder='0' 
+            <iframe className={'featured-videos'} src={`https://www.youtube.com/embed/${item}`} title='YouTube video player' frameBorder='0' 
             allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'>
             </iframe>
           </CarouselItem>

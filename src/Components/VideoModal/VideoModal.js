@@ -31,7 +31,7 @@ function VideoModal({ source, modal, title, videoId, setModal }) {
           </iframe>
           </ModalBody>
           <ModalFooter>
-            <Btn text='Cancel' color='danger' onClick={() => toggle(false)} />
+            <Btn {...{ text:'Cancel', color:'danger' }} onClick={() => toggle(false)} />
           </ModalFooter>
         </Modal>
       </div>
