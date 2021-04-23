@@ -1,8 +1,17 @@
-import React from 'react';
+import React, {FunctionComponent} from 'react';
 import { Button } from 'reactstrap';
 
-function Btn({ color, text, onClick, className, size, icon }) {
-  let outlineColor
+type BtnProps = {
+  color: string;
+  text: string;
+  onClick: () => void;
+  className: string;
+  size: string;
+  icon: string;
+}
+
+export const Btn: FunctionComponent<BtnProps> = ({ color, text, onClick, className, size, icon }) => {
+  let outlineColor: string
 
 
   switch(color) {
@@ -28,5 +37,3 @@ function Btn({ color, text, onClick, className, size, icon }) {
     </Button>
   );
 }
-
-export default Btn;

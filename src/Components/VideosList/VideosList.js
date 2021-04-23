@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Btn from '../Button/Button';
+import { Btn } from '../Button/Button';
 import PaginationComponent from '../Pagination';
 import GridIcon from '../../assets/icons/icons8-grid-view.png';
 import ListIcon from '../../assets/icons/icons8-list-view.png';

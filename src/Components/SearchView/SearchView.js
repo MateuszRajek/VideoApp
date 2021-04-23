@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { InputGroup, InputGroupAddon, Input, DropdownToggle, DropdownMenu, DropdownItem, Dropdown } from 'reactstrap';
-import Btn from '../Button/Button';
+import { Btn } from '../Button/Button';
 
 function SearchView({ onChange, onSubmit, onClick, source, inputValue }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);

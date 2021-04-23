@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import Btn from '../Button/Button';
+import { Btn } from '../Button/Button';
 import './VideoModal.css';
 
 function VideoModal({ source, modal, title, videoId, setModal }) {

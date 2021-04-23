@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardText, CardBody,CardTitle, CardSubtitle } from 'reactstrap';
-import Btn from '../Button/Button';
+import { Btn } from '../Button/Button';
 import './VideoCard.css';
 
 function VideoCard({ likes, title, views, publishedDate, image, videoId, onClick, source, 
