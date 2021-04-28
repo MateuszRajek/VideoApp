@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Btn } from '../Button/Button';
 import './VideoModal.css';
 
-function VideoModal({ source, modal, title, videoId, setModal }) {
 
-  const toggle = prop => {
+type ModalProps = {
+  source: string;
+  modal: boolean;
+  title: string;
+  videoId: string;
+  setModal: (prop: boolean) => void;
+}
+
+export const VideoModal: FunctionComponent<ModalProps> = ({ source, modal, title, videoId, setModal }) => {
+
+  const toggle = (prop: boolean) => {
     setModal(prop);
   }
 
-  let src;
+  let src: string | undefined;
 
   switch(source) {
     case 'youtube':
@@ -27,7 +36,7 @@ function VideoModal({ source, modal, title, videoId, setModal }) {
           <ModalHeader>{title}</ModalHeader>
           <ModalBody>
           <iframe width='100%' height='315' src={src} title='YouTube video player' 
-          frameBorder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'>
+          frameBorder='0' allow='accelerometer; autoplay; fullscreen; clipboard-write; encrypted-media; gyroscope; picture-in-picture'>
           </iframe>
           </ModalBody>
           <ModalFooter>
@@ -37,5 +46,3 @@ function VideoModal({ source, modal, title, videoId, setModal }) {
       </div>
   );
 }
-
-export default VideoModal;
