@@ -1,8 +1,15 @@
 import React, {FunctionComponent} from 'react';
 import { Button } from 'reactstrap';
 
+enum Colors {
+  info = 'info',
+  danger = 'danger',
+  success = 'success',
+  link = 'link',
+}
+
 type BtnProps = {
-  color: string;
+  color: Colors;
   text: string;
   onClick: () => void;
   className: string;
@@ -13,23 +20,7 @@ type BtnProps = {
 export const Btn: FunctionComponent<BtnProps> = ({ color, text, onClick, className, size, icon }) => {
   let outlineColor: string
 
-
-  switch(color) {
-    case 'info':
-      outlineColor = 'info';
-      break;
-    case 'danger':
-      outlineColor = 'danger';
-      break;
-    case 'success':
-      outlineColor = 'success';
-      break;
-    case 'link':
-      outlineColor = 'link';
-      break;
-    default:
-      outlineColor = 'primary';
-  }
+  color ? outlineColor = Colors[color] : outlineColor = 'primary'
 
   return (
   <Button outline {...{ color:outlineColor, onClick, className, size }} >
