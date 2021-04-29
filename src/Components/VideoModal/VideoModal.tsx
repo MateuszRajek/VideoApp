@@ -40,7 +40,7 @@ export const VideoModal: FunctionComponent<ModalProps> = ({ source, modal, title
           </iframe>
           </ModalBody>
           <ModalFooter>
-            <Btn {...{ text:'Cancel', color:'danger', onClick:() => toggle(false) }} />
+            <Btn {...{ text: 'Cancel', color:'danger', onClick:() => toggle(false) }} />
           </ModalFooter>
         </Modal>
       </div>

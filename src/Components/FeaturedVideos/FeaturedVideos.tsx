@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, FunctionComponent } from 'react';
 import { Carousel, CarouselItem, CarouselIndicators } from 'reactstrap';
 import './FeaturedVideos.css';
 
-const featuredVideos = ['povY6y1AXD0', 'C0rlAYYnb0U', 'v2XoBeZQ0YQ', 'lSAz2ONC1rk', 'EsKVSU-Eqok']
+const featuredVideos: string[] = ['povY6y1AXD0', 'C0rlAYYnb0U', 'v2XoBeZQ0YQ', 'lSAz2ONC1rk', 'EsKVSU-Eqok']
 
-function FeaturedVideos() {
+export const FeaturedVideos: FunctionComponent = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
 
@@ -43,5 +43,3 @@ function FeaturedVideos() {
     </>
   ); 
 };
-
-export default FeaturedVideos;

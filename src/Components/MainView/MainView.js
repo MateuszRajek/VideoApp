@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container } from 'reactstrap';
 import SearchView from '../SearchView/SearchView';
-import FeaturedVideos from '../FeaturedVideos/FeaturedVideos';
+import { FeaturedVideos } from '../FeaturedVideos/FeaturedVideos';
 import VideosList from '../VideosList/VideosList';
 import { VideoModal } from '../VideoModal/VideoModal.tsx';
 import { fetchYoutubeData } from '../../VideosSources/YouTube';
