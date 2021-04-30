@@ -1,8 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, FunctionComponent } from 'react';
 import { InputGroup, InputGroupAddon, Input, DropdownToggle, DropdownMenu, DropdownItem, Dropdown } from 'reactstrap';
 import { Btn } from '../Button/Button';
 
-function SearchView({ onChange, onSubmit, onClick, source, inputValue }) {
+type SearchViewProps = {
+  onChange: () => void;
+  onSubmit: () => void;
+  onClick: () => void;
+  source: string;
+  inputValue: string;
+}
+
+export const SearchView: FunctionComponent<SearchViewProps> = ({ onChange, onSubmit, onClick, source, inputValue }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggle = () => setDropdownOpen(prevState => !prevState);
 
@@ -27,5 +35,3 @@ function SearchView({ onChange, onSubmit, onClick, source, inputValue }) {
     
   );
 }
-
-export default SearchView;

@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 export const getYouTubeVideoInfo = video => {
-  return axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${video}&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`)
+  return axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${video}&key=AIzaSyC1XsTp5oyzcKrycQx1fZidIRDvu8vn3Ys`)
   .then(resp => {
     const videoId = resp.data.items[0].id.videoId;
-    return axios.get(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet&part=statistics&id=${videoId}&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`);
+    return axios.get(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet&part=statistics&id=${videoId}&key=AIzaSyC1XsTp5oyzcKrycQx1fZidIRDvu8vn3Ys`);
   })
 }
 

@@ -4,7 +4,7 @@ import { Button } from 'reactstrap';
 type BtnProps = {
   color?: string;
   text: string;
-  onClick: () => void;
+  onClick?: () => void;
   className?: string;
   size?: string;
   icon?: string;
