@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, FunctionComponent } from 'react';
 import { Carousel, CarouselItem, CarouselIndicators } from 'reactstrap';
 import './FeaturedVideos.css';
 
-const featuredVideos = ['povY6y1AXD0', 'C0rlAYYnb0U', 'v2XoBeZQ0YQ', 'lSAz2ONC1rk', 'EsKVSU-Eqok']
+const featuredVideos: string[] = ['povY6y1AXD0', 'C0rlAYYnb0U', 'v2XoBeZQ0YQ', 'lSAz2ONC1rk', 'EsKVSU-Eqok']
 
-function FeaturedVideos() {
+export const FeaturedVideos: FunctionComponent = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
 
@@ -20,7 +20,7 @@ function FeaturedVideos() {
     setActiveIndex(nextIndex);
   }
 
-  const goToIndex = newIndex => {
+  const goToIndex = ( newIndex: number ) => {
     if (animating) return;
     setActiveIndex(newIndex);
   }
@@ -29,7 +29,7 @@ function FeaturedVideos() {
     <>
     <h4>Featured Videos</h4>
     <Carousel {...{ activeIndex, next, previous }}>
-      <CarouselIndicators {...{ items:featuredVideos, activeIndex, onClickHandler:goToIndex }} />
+      <CarouselIndicators {...{ items:featuredVideos, activeIndex:activeIndex, onClickHandler:goToIndex }}/>
       {featuredVideos.map(item => {
         return (
           <CarouselItem {...{ onExiting:() => setAnimating(true), onExited:() => setAnimating(false), key:item }}>
@@ -37,11 +37,10 @@ function FeaturedVideos() {
             allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'>
             </iframe>
           </CarouselItem>
+          
         );
       })}
     </Carousel>
     </>
   ); 
 };
-
-export default FeaturedVideos;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Row } from 'reactstrap';
-import VideoCard from '../../VideoCard/VideoCard';
+import { VideoCard } from '../../VideoCard/VideoCard';
 
 function GridView({ videosList, onClick, setModal, setVideoId, setSource, toggleFavourite }) {
 

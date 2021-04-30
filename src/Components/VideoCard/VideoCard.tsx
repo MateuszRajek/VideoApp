@@ -1,38 +1,46 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { Card, CardText, CardBody,CardTitle, CardSubtitle } from 'reactstrap';
-import Btn from '../Button/Button';
+import { Btn } from '../Button/Button';
 import './VideoCard.css';
 
-function VideoCard({ likes, title, views, publishedDate, image, videoId, onClick, source, 
-  favourite, setModal, setVideoId, setSource, toggleFavourite, className }) {
+type VideoCardProps = {
+  likes: number; 
+  title: string;
+  views: number; 
+  publishedDate: string; 
+  image: string; 
+  videoId: string;
+  onClick: (prop: string) => void; 
+  source: string; 
+  favourite: string;
+  setModal: (prop: boolean) => void;
+  setVideoId: (prop: string) => void;
+  setSource: (prop: string) => void;
+  toggleFavourite: (prop: string) => void;
+  className: string;
+}
 
-  const toggle = prop => {
+export const VideoCard: FunctionComponent<VideoCardProps> = ({ likes, title, views, publishedDate, image, videoId, onClick, source, 
+  favourite, setModal, setVideoId, setSource, toggleFavourite, className }) => {
+
+  const toggle = (prop: boolean) => {
     setModal(prop);
   }
 
-  const getId = id => {
+  const getId = (id: string) => {
     setVideoId(id);
   }
 
-  const getSource = source => {
+  const getSource = (source: string) => {
     setSource(source);
   }
 
-  let text;
+  let text: string;
 
-  switch(favourite) {
-    case 'no':
-      text = 'Add to favourite';
-      break;
-    case 'yes':
-      text = 'Remove from favourite';
-      break;
-    default:
-      text = 'favourite';
-  }
+  text = favourite === 'no' ? 'Add to favourite' : 'Remove from favourite'
 
   return (
-        <Card className={className ? className : null}>
+        <Card className={className ? className : undefined}>
           <div className={'card__wrapper'}>
             <img className='card__image' src={image} alt='video thumbnail' onClick={() => {
               toggle(true)
@@ -59,5 +67,3 @@ function VideoCard({ likes, title, views, publishedDate, image, videoId, onClick
         </Card>
   );
 }
-
-export default VideoCard;
