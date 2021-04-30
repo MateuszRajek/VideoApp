@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { Button } from 'reactstrap';
 
 type BtnProps = {
-  color: string;
+  color?: string;
   text: string;
   onClick: () => void;
   className?: string;

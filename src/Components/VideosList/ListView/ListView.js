@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Row } from 'reactstrap';
-import VideoCard from '../../VideoCard/VideoCard';
+import { VideoCard } from '../../VideoCard/VideoCard';
 import './ListView.css';
 
 function ListView({ videosList, onClick, setModal, setVideoId, setSource, toggleFavourite }) {
