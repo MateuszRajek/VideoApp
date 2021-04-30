@@ -20,7 +20,7 @@ export const FeaturedVideos: FunctionComponent = () => {
     setActiveIndex(nextIndex);
   }
 
-  const goToIndex = newIndex => {
+  const goToIndex = ( newIndex: number ) => {
     if (animating) return;
     setActiveIndex(newIndex);
   }
@@ -29,7 +29,7 @@ export const FeaturedVideos: FunctionComponent = () => {
     <>
     <h4>Featured Videos</h4>
     <Carousel {...{ activeIndex, next, previous }}>
-      <CarouselIndicators {...{ items:featuredVideos, activeIndex, onClickHandler:goToIndex }} />
+      <CarouselIndicators {...{ items:featuredVideos, activeIndex:activeIndex, onClickHandler:goToIndex }}/>
       {featuredVideos.map(item => {
         return (
           <CarouselItem {...{ onExiting:() => setAnimating(true), onExited:() => setAnimating(false), key:item }}>
@@ -37,6 +37,7 @@ export const FeaturedVideos: FunctionComponent = () => {
             allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'>
             </iframe>
           </CarouselItem>
+          
         );
       })}
     </Carousel>
