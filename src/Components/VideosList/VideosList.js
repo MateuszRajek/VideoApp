@@ -4,8 +4,8 @@ import PaginationComponent from '../Pagination';
 import GridIcon from '../../assets/icons/icons8-grid-view.png';
 import ListIcon from '../../assets/icons/icons8-list-view.png';
 import './VideosList.css';
-import GridView from './GridView/GridView';
-import ListView from './ListView/ListView';
+import { GridView } from './GridView/GridView';
+import { ListView } from './ListView/ListView';
 import { DropdownToggle, DropdownMenu, DropdownItem, Dropdown } from 'reactstrap';
 
 function VideosList({ videoList, onClick, setModal, setVideoId, setSource, toggleFavourite, favouriteVideosList, deleteAllVideos }) {

@@ -6,7 +6,7 @@ import './VideoCard.css';
 type VideoCardProps = {
   likes: number; 
   title: string;
-  views: number; 
+  views: number | string; 
   publishedDate: string; 
   image: string; 
   videoId: string;
@@ -17,7 +17,7 @@ type VideoCardProps = {
   setVideoId: (prop: string) => void;
   setSource: (prop: string) => void;
   toggleFavourite: (prop: string) => void;
-  className: string;
+  className?: string;
 }
 
 export const VideoCard: FunctionComponent<VideoCardProps> = ({ likes, title, views, publishedDate, image, videoId, onClick, source, 

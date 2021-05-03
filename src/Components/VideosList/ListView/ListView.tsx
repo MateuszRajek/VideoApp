@@ -1,9 +1,29 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { Col, Row } from 'reactstrap';
 import { VideoCard } from '../../VideoCard/VideoCard';
 import './ListView.css';
 
-function ListView({ videosList, onClick, setModal, setVideoId, setSource, toggleFavourite }) {
+type VideosListObj = {
+  source: string, 
+  image: string, 
+  likes: number, 
+  releaseDate: string, 
+  title: string, 
+  views: number, 
+  id: string, 
+  favourite: string
+}
+
+type ListViewProps = {
+  videosList: VideosListObj[];
+  onClick: (prop: string) => void;
+  setModal: (prop: boolean) => void;
+  setVideoId: (prop: string) => void;
+  setSource: (prop: string) => void;
+  toggleFavourite: (prop: string) => void;
+}
+
+export const ListView: FunctionComponent<ListViewProps> = ({ videosList, onClick, setModal, setVideoId, setSource, toggleFavourite }) => {
 
         return (
             <Row className={'list-view__row'}>
@@ -19,5 +39,3 @@ function ListView({ videosList, onClick, setModal, setVideoId, setSource, toggle
             </Row>
         )
 }
-
-export default ListView;
