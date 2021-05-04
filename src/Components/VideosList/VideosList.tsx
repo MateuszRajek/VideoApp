@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { Btn } from '../Button/Button';
-import PaginationComponent from '../Pagination';
+import { PaginationComponent } from '../Pagination';
 import GridIcon from '../../assets/icons/icons8-grid-view.png';
 import ListIcon from '../../assets/icons/icons8-list-view.png';
 import './VideosList.css';
@@ -8,33 +8,57 @@ import { GridView } from './GridView/GridView';
 import { ListView } from './ListView/ListView';
 import { DropdownToggle, DropdownMenu, DropdownItem, Dropdown } from 'reactstrap';
 
-function VideosList({ videoList, onClick, setModal, setVideoId, setSource, toggleFavourite, favouriteVideosList, deleteAllVideos }) {
+type VideoListObj = {
+  source: string, 
+  image: string, 
+  likes: number, 
+  releaseDate: string, 
+  title: string, 
+  views: number, 
+  id: string, 
+  favourite: string
+}
+
+type VideosListProps = {
+  videoList: VideoListObj[];
+  favouriteVideosList: []
+  onClick: (prop: string) => void;
+  setModal: (prop: boolean) => void;
+  setVideoId: (prop: string) => void;
+  setSource: (prop: string) => void;
+  toggleFavourite: (prop: string) => void;
+  deleteAllVideos: () => void;
+}
+
+export const  VideosList: FunctionComponent<VideosListProps> = ({ videoList, onClick, setModal, setVideoId, 
+  setSource, toggleFavourite, favouriteVideosList, deleteAllVideos }) => {
   const [isFavourite, setFavourite] = useState(false);
   const [active, setActive] = useState('All Videos');
   const [currentPage, setCurrentPage] = useState(1);
   const [videosPerPage] = useState(10);
   const [displayView, setDisplayView] = useState('grid');
   const [sortBy, setSortBy] = useState('');
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const buttons = ['All Videos', 'Favourite Videos'];
   const videosList = isFavourite ? favouriteVideosList : videoList;
   const icons = ['grid', 'list'];
   const sortByItems = ['Default', 'Newest', 'Oldest'];
 
   const sortedByNewestVideos = [...videosList].sort(function compare(b, a) {
-    const dateA = new Date(a.releaseDate);
-    const dateB = new Date(b.releaseDate);
+    const dateA = new Date(a.releaseDate).valueOf();
+    const dateB = new Date(b.releaseDate).valueOf();
   return dateA - dateB;
 })
 
   const sortedByOldestVideos = [...videosList].sort(function compare(a, b) {
-    const dateA = new Date(a.releaseDate);
-    const dateB = new Date(b.releaseDate);
+    const dateA = new Date(a.releaseDate).valueOf();
+    const dateB = new Date(b.releaseDate).valueOf();
   return dateA - dateB;
   })
 
-  const updateStates = button => {
+  const updateStates = (button: string) => {
     setActive(button);
-    let favourite;
+    let favourite: boolean;
     switch(button) {
       case 'All Videos':
         favourite = false;
@@ -44,15 +68,15 @@ function VideosList({ videoList, onClick, setModal, setVideoId, setSource, toggl
         setCurrentPage(1)
         break;
         default:
-          favourite = false;
+        favourite = false;
     }
     setFavourite(favourite);
   }
 
-  const indexOfLastVideo = currentPage * videosPerPage;
-  const indexOfFirstVideo = indexOfLastVideo - videosPerPage;
+  const indexOfLastVideo: number = currentPage * videosPerPage;
+  const indexOfFirstVideo: number = indexOfLastVideo - videosPerPage;
 
-  let currentVideos;
+  let currentVideos: VideoListObj[];
 
   switch (sortBy) {
     case 'Oldest':
@@ -68,13 +92,12 @@ function VideosList({ videoList, onClick, setModal, setVideoId, setSource, toggl
       currentVideos = videosList.slice(indexOfFirstVideo, indexOfLastVideo);
   }
 
-  const paginate = pageNumber => setCurrentPage(pageNumber);
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
-  const toggleDisplay = icon => {
+  const toggleDisplay = (icon: string) => {
     icon === 'list' ? setDisplayView('list') : setDisplayView('grid');
   }
 
-  const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggle = () => setDropdownOpen(prevState => !prevState);
 
   return (
@@ -113,5 +136,3 @@ function VideosList({ videoList, onClick, setModal, setVideoId, setSource, toggl
     </>
   );
 }
-
-export default VideosList;

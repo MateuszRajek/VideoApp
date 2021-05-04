@@ -1,9 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
-function PaginationComponent({ videosPerPage, totalVideos, paginate, firstPage }) {
+type PaginationComponentProps = {
+  videosPerPage: number;
+  totalVideos: number;
+  paginate: (prop: number) => void;
+  firstPage: boolean;
+}
+
+
+export const PaginationComponent: FunctionComponent<PaginationComponentProps> = ({ videosPerPage, totalVideos, paginate, firstPage }) => {
   const [active, setActive] = useState(1);
-  const pageNumbers = [];
+  const pageNumbers: number[] = [];
 
     for (let i = 1; i <= Math.ceil(totalVideos / videosPerPage); i++) {
     pageNumbers.push(i);
@@ -29,5 +37,3 @@ function PaginationComponent({ videosPerPage, totalVideos, paginate, firstPage }
     </Pagination>
   );
 }
-
-export default PaginationComponent;

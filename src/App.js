@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import MainView from './Components/MainView/MainView';
+import { MainView } from './Components/MainView/MainView';
 import './App.css';
 
 function App() {

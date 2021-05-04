@@ -2,13 +2,25 @@ import React, { useEffect, useState } from 'react';
 import { Container } from 'reactstrap';
 import { SearchView } from '../SearchView/SearchView';
 import { FeaturedVideos } from '../FeaturedVideos/FeaturedVideos';
-import VideosList from '../VideosList/VideosList';
-import { VideoModal } from '../VideoModal/VideoModal.tsx';
+import { VideosList } from '../VideosList/VideosList';
+import { VideoModal } from '../VideoModal/VideoModal';
 import { fetchYoutubeData } from '../../VideosSources/YouTube';
 import { fetchVimeoData } from '../../VideosSources/Vimeo';
 import './MainView.css';
 
-function MainView() {
+
+type VideoObj = {
+  source: string;
+  title: string;
+  image: string;
+  releaseDate: string;
+  likes: number;
+  views: number;
+  id: string;
+  favourite: string;
+}
+
+export const MainView = () => {
   const [inputValue, setInputValue] = useState('');
   const [videosList, setVideoList] = useState([]);
   const [videoSource, setVideoSource] = useState('Choose video source');
@@ -32,7 +44,7 @@ function MainView() {
     setVideoSource(event.target.innerText);
   }
 
-  const addVideoToLocalStorage = (id, video) => {
+  const addVideoToLocalStorage = (id: string, video: VideoObj) => {
     localStorage.setItem(`video-id: ${id}`, JSON.stringify(video));
   }
 
@@ -48,11 +60,11 @@ function MainView() {
     setVideoList(video);
   } 
 
-  const removeItemFromLocalStorage = id => {
+  const removeItemFromLocalStorage = (id: string) => {
     localStorage.removeItem(`video-id: ${id}`);
   }
 
-  const deleteVideo = id => {
+  const deleteVideo = (id: string) => {
     removeItemFromLocalStorage(id);
     reRenderVideoList();
   }
@@ -64,13 +76,13 @@ function MainView() {
   
   const getAndRenderMyVideos = async () => {
 
-    let video = {
+    let video: VideoObj = {
       source: '',
       title: '',
       image: '',
       releaseDate: '',
-      likes: '',
-      views: '',
+      likes: 0,
+      views: 0,
       id: '',
       favourite: 'no',
     }

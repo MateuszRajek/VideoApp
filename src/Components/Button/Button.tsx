@@ -3,7 +3,7 @@ import { Button } from 'reactstrap';
 
 type BtnProps = {
   color?: string;
-  text: string;
+  text?: string;
   onClick?: () => void;
   className?: string;
   size?: string;
