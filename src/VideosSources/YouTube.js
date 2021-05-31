@@ -2,17 +2,6 @@ import { getYouTubeVideoInfo } from '../requests';
 
 export const fetchYoutubeData = async (inputValue, setVideoList, addVideoToLocalStorage, setInputValue, videoSource, videosList, video) => {
 
-type VideoObj = {
-  source: string;
-  title: string;
-  image: string;
-  releaseDate: string;
-  likes: number;
-  views: number;
-  id: string;
-  favourite: string;
-}
-
   await getYouTubeVideoInfo(inputValue).then(resp => {
     const { items } = resp.data;
     const videoData = items[0];

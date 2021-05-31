@@ -29,31 +29,31 @@ export const MainView = () => {
   const [source, setSource] = useState('');
   const [favouriteVideosList, setFavouriteList] = useState([]);
   
-  const onButtonSubmit = event => {
+  const onButtonSubmit = (event: React.SyntheticEvent): void => {
     event.preventDefault();
     if (inputValue === '') {
       alert('PLEASE INSERT FULL VIDEO URL OR VIDEO ID');
     } else getAndRenderMyVideos();
   }
   
-  const onInputChange = event => {
+  const onInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
   setInputValue(event.target.value);
   }
 
-  const chooseVideoSource = event => {
+  const chooseVideoSource = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setVideoSource(event.target.innerText);
   }
 
-  const addVideoToLocalStorage = (id: string, video: VideoObj) => {
+  const addVideoToLocalStorage = (id: string, video: VideoObj): void => {
     localStorage.setItem(`video-id: ${id}`, JSON.stringify(video));
   }
 
   const getItemsFromLocalStorage = () => {
-    const video = [];
+    const video: VideoObj[] = [];
   
     for (let item in localStorage) {
       if(localStorage.hasOwnProperty(item) && item.startsWith('video-id')) {
-        const itemsFromLocalStorage = localStorage.getItem(item);
+        const itemsFromLocalStorage: string | null = localStorage.getItem(item);
         video.push(JSON.parse(itemsFromLocalStorage));
       }  
     }
@@ -102,7 +102,7 @@ export const MainView = () => {
     reRenderVideoList();
   } 
 
-  const toggleFavouriteVideo = id => {
+  const toggleFavouriteVideo = (id:string) => {
     for (let item in localStorage) {
       if(localStorage.hasOwnProperty(item) && item === `video-id: ${id}`) {
         const itemFromLocalStorage = localStorage.getItem(item);

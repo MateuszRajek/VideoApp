@@ -7,7 +7,7 @@ import './VideoModal.css';
 type ModalProps = {
   source: string;
   modal: boolean;
-  title: string;
+  title?: string;
   videoId: string;
   setModal: (prop: boolean) => void;
 }
